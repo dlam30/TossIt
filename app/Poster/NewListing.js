@@ -12,7 +12,7 @@ export default class NewListing extends Component {
     render() {
         return (
             <View>
-                <Text>Username: </Text>
+                <Text>Title: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
@@ -20,7 +20,7 @@ export default class NewListing extends Component {
                     // placeholder = 'Type here'
                     value = { this.state.username }
                 />
-                <Text>Password: </Text>
+                <Text>Other stuff: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
@@ -31,18 +31,19 @@ export default class NewListing extends Component {
                 <Button
                     onPress = {this._isPress}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
-                    title = 'login'
+                    title = 'Post'
                     color = 'black'>
                 </Button>
             </View>
         )
     }
 
-    _isPress = () => {
-        this.props.navigator.push({
-            title: 'Login',
-            name: 'Login',
-            username: this.state.username
-        })
+    _isPress = () => { //FIXME: Post it to the list - where is this? 
+        // this.props.navigator.push({
+        //     title: 'MyListings',
+        //     name: 'MyListings',
+        //     username: this.state.username
+        // })
+        this.props.navigator.pop()
     }
 }

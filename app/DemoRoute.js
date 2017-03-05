@@ -15,7 +15,7 @@ import NewListing from './Poster/NewListing'
 
 
 
-export default class TestRoute extends Component {
+export default class DemoRoute extends Component {
     render() {
         return (
             <Navigator
