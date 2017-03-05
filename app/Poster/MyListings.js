@@ -14,6 +14,7 @@ export default class MyListings extends Component {
             <View style={{flex: 1}}>
             <ScrollView><Text>List of postings goes here</Text></ScrollView>
             <View>
+            
                 <Button
                     onPress = {this._isPress}
                     style = {{height: 50, borderWidth: 1, borderColor: 'black' }}

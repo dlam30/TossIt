@@ -21,7 +21,7 @@ export default class DemoRoute extends Component {
             <Navigator
                 initialRoute = {{ title: 'Index', name: 'Index' }}
                 renderScene = { this.renderScene }
-                style={{paddingTop: 60}} //FIXME: Sloppy way to prevent nav bar from overlaying contents
+                style={{paddingTop: 56}} //FIXME: Sloppy way to prevent nav bar from overlaying contents
                 navigationBar={
 								<Navigator.NavigationBar
 									routeMapper={{

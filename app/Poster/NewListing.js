@@ -11,13 +11,18 @@ export default class NewListing extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+                <View style={{flex: 1}}>
+                    <Text>Upload picture/picture displayed here</Text>
+                </View>
+                <View style={{flex: 1}}> 
+                <Text>//FIXME: should be a scroll box</Text>
                 <Text>Title: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
-                    // onChangeText = {(text) => this.setState({ text })}
-                    // placeholder = 'Type here'
+                    onChangeText = {(text) => this.setState({ text })}
+                    placeholder = 'Type here'
                     value = { this.state.username }
                 />
                 <Text>Other stuff: </Text>
@@ -28,13 +33,17 @@ export default class NewListing extends Component {
                     // onChangeText = {(text) => this.setState({ text })}
                     secureTextEntry = { true }
                 />
+                </View>
+                <View style={{}}>
                 <Button
                     onPress = {this._isPress}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
                     title = 'Post'
                     color = 'black'>
                 </Button>
+                </View>
             </View>
+
         )
     }
 
