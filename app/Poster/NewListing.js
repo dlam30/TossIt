@@ -3,7 +3,7 @@ import {
    View, Text, Button, TextInput
 } from 'react-native'
 
-export default class Index extends Component {
+export default class NewListing extends Component {
     constructor(props) {
         super(props);
         this.state = {username: 'TestUser',

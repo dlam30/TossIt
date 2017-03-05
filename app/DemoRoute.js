@@ -4,7 +4,8 @@ import {
    StyleSheet,
    Text,
    Navigator,
-   TouchableOpacity
+   TouchableOpacity,
+   TouchableHighlight
 } from 'react-native'
 
 import Index from './DemoIndex'
@@ -25,9 +26,19 @@ export default class TestRoute extends Component {
 								<Navigator.NavigationBar
 									routeMapper={{
 									  LeftButton: (route, navigator, index, navState) =>
-									   { return (<Text>Cancel</Text>); },
+									  {
+										    if (route.title == "Index") {
+										      return null;
+										    } else {
+										      return (
+										        <TouchableHighlight onPress={() => navigator.pop()}>
+										          <Text>Back</Text>
+										        </TouchableHighlight>
+										      );
+										    }
+										},
 									  RightButton: (route, navigator, index, navState) =>
-									   { return (<Text>Done</Text>); },
+									   { return null; }, //TODO: use for DONE button on posting
 									  Title: (route, navigator, index, navState) =>
 									   { return (<Text>{route.title}</Text>); },
 									}}

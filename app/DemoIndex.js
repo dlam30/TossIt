@@ -5,7 +5,7 @@ import {
 
 import HaulerRoute from './Hauler/HaulerRoute'
 import PosterRoute from './Poster/PosterRoute'
-export default class Index extends Component {
+export default class DemoIndex extends Component {
     constructor(props) {
         super(props);
         this.state = {username: 'TestUser',
