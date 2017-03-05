@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput
+   View, Text, Button, TextInput, ScrollView
 } from 'react-native'
 
-export default class Index extends Component {
+export default class MyListings extends Component {
     constructor(props) {
         super(props);
         this.state = {username: 'TestUser',
@@ -11,30 +11,20 @@ export default class Index extends Component {
     }
     render() {
         return (
+            <View style={{flex: 1}}>
+            <ScrollView><Text>List of postings goes here</Text></ScrollView>
             <View>
-                <Text>Username: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    // onChangeText = {(text) => this.setState({ text })}
-                    // placeholder = 'Type here'
-                    value = { this.state.username }
-                />
-                <Text>Password: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    value = { this.state.password }
-                    // onChangeText = {(text) => this.setState({ text })}
-                    secureTextEntry = { true }
-                />
                 <Button
                     onPress = {this._isPress}
-                    style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
-                    title = 'New Listing'
+                    style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
+                    title = 'New'
                     color = 'black'>
                 </Button>
+                
+                
             </View>
+        </View>
+
         )
     }
 
