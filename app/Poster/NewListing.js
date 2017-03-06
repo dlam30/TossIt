@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput
+   View, Text, Button, TextInput, ScrollView
 } from 'react-native'
 
 export default class NewListing extends Component {
@@ -19,56 +19,54 @@ export default class NewListing extends Component {
                     <Text>Upload picture/picture displayed here</Text>
                 </View>
                 <View style={{flex: 1}}> 
-                <Text>//FIXME: should be a scroll box</Text>
+                    <ScrollView style={{flex: 1}}>
+                        <Text>Title: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ title: text })}
+                            placeholder = 'Type here'
+                            value = { this.state.title }
+                        />
 
+                        <Text>Item: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ item: text })}
+                            placeholder = 'Type item here'
+                            value = { this.state.item }
+                        />
 
-                <Text>Title: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ title: text })}
-                    placeholder = 'Type here'
-                    value = { this.state.title }
-                />
+                        <Text>Description: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ description: text })}
+                            placeholder = 'Type description here'
+                            value = { this.state.description }
+                        />
 
-                <Text>Item: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ item: text })}
-                    placeholder = 'Type item here'
-                    value = { this.state.item }
-                />
+                        <Text>Size: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ size: text })}
+                            placeholder = 'Type size here'
+                            value = { this.state.size }
+                        />
 
-                <Text>Description: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ description: text })}
-                    placeholder = 'Type description here'
-                    value = { this.state.description }
-                />
-
-                <Text>Size: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ size: text })}
-                    placeholder = 'Type size here'
-                    value = { this.state.size }
-                />
-
-                <Text>Weight: </Text>
-                <TextInput
-                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ weight: text })}
-                    placeholder = 'Type weight here'
-                    value = { this.state.weight }
-                />
-
+                        <Text>Weight: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ weight: text })}
+                            placeholder = 'Type weight here'
+                            value = { this.state.weight }
+                        />
+                    </ScrollView>
                 </View>
-                <View style={{}}>
+                        <View style={{}}>
                 <Button
                     onPress = {this._isPress}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
