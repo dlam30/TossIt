@@ -10,8 +10,12 @@ import {
 
 import Index from './DemoIndex'
 import Login from './DemoLogin'
+
+import MyPickups from './Hauler/MyPickups'
+
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
+import NewListingContinued from './Poster/NewListingContinued'
 
 
 
@@ -58,6 +62,22 @@ export default class DemoRoute extends Component {
                 />
             )
         }
+    
+    {/*Hauler Routes*/}
+
+        if (route.name == 'MyPickups') {
+            // console.log("in Router " + route.username);
+            return (
+                <MyPickups
+                    navigator = { navigator }
+                    username = { route.username }
+                />
+            )
+        }
+
+
+    {/*Poster Routes*/}
+
         if (route.name == 'MyListings') {
             // console.log("in Router " + route.username);
             return (
@@ -71,6 +91,15 @@ export default class DemoRoute extends Component {
             // console.log("in Router " + route.username);
             return (
                 <NewListing
+                    navigator = { navigator }
+                    username = { route.username }
+                />
+            )
+        }
+        if (route.name == 'NewListingContinued') {
+            // console.log("in Router to NewListingContinued " + route.username);
+            return (
+                <NewListingContinued
                     navigator = { navigator }
                     username = { route.username }
                 />

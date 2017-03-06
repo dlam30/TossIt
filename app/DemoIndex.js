@@ -37,7 +37,7 @@ export default class DemoIndex extends Component {
                     color = 'orange'>
                 </Button>
                 <Button
-                    onPress = {this._isPressPoster} //FIXME: change to Hauler
+                    onPress = {this._isPressHauler} //FIXME: change to Hauler
                     style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
                     title = 'Hauler'
                     color = 'blue'>
@@ -46,12 +46,19 @@ export default class DemoIndex extends Component {
         )
     }
 
+    _isPressHauler = () => {
+        this.props.navigator.push({
+            title: 'My Pickups',
+            name: 'MyPickups',
+            username: this.state.username
+        })
+    }
+
     _isPressPoster = () => {
         this.props.navigator.push({
-            title: 'MyListings',
+            title: 'My Listings',
             name: 'MyListings',
             username: this.state.username
         })
-      
     }
 }

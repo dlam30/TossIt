@@ -12,19 +12,18 @@ export default class MyListings extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-            <ScrollView><Text>List of postings goes here</Text></ScrollView>
-            <View>
+                <ScrollView><Text>List of postings goes here</Text></ScrollView>
+                <View>
             
-                <Button
-                    onPress = {this._isPress}
-                    style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
-                    title = 'New'
-                    color = 'black'>
-                </Button>
+                    <Button
+                        onPress = {this._isPress}
+                        style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
+                        title = 'New'
+                        color = 'black'>
+                    </Button>
                 
-                
+                </View>
             </View>
-        </View>
 
         )
     }

@@ -6,8 +6,11 @@ import {
 export default class NewListing extends Component {
     constructor(props) {
         super(props);
-        this.state = {username: 'TestUser',
-                      password: 'password'}
+        this.state = {title: '',
+                        item: '',
+                        description: '',
+                        size: '',
+                        weight: ''}
     }
     render() {
         return (
@@ -17,28 +20,59 @@ export default class NewListing extends Component {
                 </View>
                 <View style={{flex: 1}}> 
                 <Text>//FIXME: should be a scroll box</Text>
+
+
                 <Text>Title: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ text })}
+                    onChangeText = {(text) => this.setState({ title: text })}
                     placeholder = 'Type here'
-                    value = { this.state.username }
+                    value = { this.state.title }
                 />
-                <Text>Other stuff: </Text>
+
+                <Text>Item: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
-                    value = { this.state.password }
-                    // onChangeText = {(text) => this.setState({ text })}
-                    secureTextEntry = { true }
+                    onChangeText = {(text) => this.setState({ item: text })}
+                    placeholder = 'Type item here'
+                    value = { this.state.item }
                 />
+
+                <Text>Description: </Text>
+                <TextInput
+                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ description: text })}
+                    placeholder = 'Type description here'
+                    value = { this.state.description }
+                />
+
+                <Text>Size: </Text>
+                <TextInput
+                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ size: text })}
+                    placeholder = 'Type size here'
+                    value = { this.state.size }
+                />
+
+                <Text>Weight: </Text>
+                <TextInput
+                    style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ weight: text })}
+                    placeholder = 'Type weight here'
+                    value = { this.state.weight }
+                />
+
                 </View>
                 <View style={{}}>
                 <Button
                     onPress = {this._isPress}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
-                    title = 'Post'
+                    title = 'Continue'
                     color = 'black'>
                 </Button>
                 </View>
@@ -47,12 +81,11 @@ export default class NewListing extends Component {
         )
     }
 
-    _isPress = () => { //FIXME: Post it to the list - where is this? 
-        // this.props.navigator.push({
-        //     title: 'MyListings',
-        //     name: 'MyListings',
-        //     username: this.state.username
-        // })
-        this.props.navigator.pop()
+    _isPress = () => { 
+        this.props.navigator.push({
+            title: 'New Listing cont..',
+            name: 'NewListingContinued',
+            // username: this.state.username
+        })
     }
 }
