@@ -12,6 +12,7 @@ import Index from './DemoIndex'
 import Login from './DemoLogin'
 
 import MyPickups from './Hauler/MyPickups'
+import DemoItem from './Hauler/DemoItem'
 
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
@@ -66,7 +67,7 @@ export default class DemoRoute extends Component {
     {/*Hauler Routes*/}
 
         if (route.name == 'MyPickups') {
-            // console.log("in Router " + route.username);
+            // console.log("in Router to MyPickups" + route.username);
             return (
                 <MyPickups
                     navigator = { navigator }
@@ -75,6 +76,15 @@ export default class DemoRoute extends Component {
             )
         }
 
+        if (route.name == 'DemoItem') {
+            // console.log("in Router to DemoItem" + route.username);
+            return (
+                <DemoItem
+                    navigator = { navigator }
+                    username = { route.username }
+                />
+            )
+        }
 
     {/*Poster Routes*/}
 
