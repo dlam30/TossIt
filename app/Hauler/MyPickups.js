@@ -15,9 +15,14 @@ export default class MyPickups extends Component {
                 <ScrollView><Text>List of pickups goes here</Text></ScrollView>
                 
                 <View>
-            
                     <Button
-                        onPress = {this._isPress}
+                        onPress = {this._isPressMap}
+                        style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
+                        title = 'Map Demo'
+                        color = 'black'>
+                    </Button>
+                    <Button
+                        onPress = {this._isPressDemo}
                         style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
                         title = 'DemoItem'
                         color = 'black'>
@@ -29,10 +34,18 @@ export default class MyPickups extends Component {
         )
     }
 
-    _isPress = () => {
+    _isPressDemo = () => {
         this.props.navigator.push({
             title: 'Demo Item',
             name: 'DemoItem',
+            // username: this.state.username
+        })
+    }
+
+    _isPressMap = () => {
+        this.props.navigator.push({
+            title: 'Map Demo',
+            name: 'Root',
             // username: this.state.username
         })
     }

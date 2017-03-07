@@ -18,6 +18,8 @@ import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
 import NewListingContinued from './Poster/NewListingContinued'
 
+import Root from './Root'
+
 
 
 export default class DemoRoute extends Component {
@@ -85,6 +87,17 @@ export default class DemoRoute extends Component {
                 />
             )
         }
+
+        if (route.name == 'Root') {
+            // console.log("in Router to Root" + route.username);
+            return (
+                <Root
+                    navigator = { navigator }
+                    username = { route.username }
+                />
+            )
+        }
+
 
     {/*Poster Routes*/}
 

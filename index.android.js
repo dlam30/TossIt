@@ -11,6 +11,8 @@ import TestRoute from './examples/TestRoute'
 import DemoRoute from './app/DemoRoute'
 import DemoIndex from './app/DemoIndex'
 
+import Root from './app/Root'
+
 export default class Demo extends Component {
     render() {
     // 	return(
@@ -20,7 +22,7 @@ export default class Demo extends Component {
 
     // 	);
     return (
-        <DemoRoute />
+        <Root />
     );
   }
 }
