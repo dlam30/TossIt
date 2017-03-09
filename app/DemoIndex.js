@@ -10,8 +10,6 @@ export default class DemoIndex extends Component {
         super(props);
         this.state = {username: 'TestUser',
                       password: 'password'}
-        //this._isPressHauler = this._isPressHauler.bind(this);
-        //this._isPressPoster = this._isPressPoster.bind(this);
     }
     render() {
         return (
