@@ -18,7 +18,7 @@ export default class NewListing extends Component {
                 <View style={{flex: 1}}>
                     <Text>Upload picture/picture displayed here</Text>
                 </View>
-                <View style={{flex: 1}}> 
+                <View style={{flex: 1}}>
                     <ScrollView style={{flex: 1}}>
                         <Text>Title: </Text>
                         <TextInput
@@ -79,10 +79,17 @@ export default class NewListing extends Component {
         )
     }
 
-    _isPress = () => { 
+    _isPress = () => {
         this.props.navigator.push({
             title: 'New Listing cont..',
             name: 'NewListingContinued',
+            passProps : {
+                title: this.state.title,
+                item: this.state.item,
+                description: this.state.description,
+                size: this.state.size,
+                weight: this.state.weight
+            }
             // username: this.state.username
         })
     }

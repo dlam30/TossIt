@@ -65,7 +65,7 @@ export default class DemoRoute extends Component {
                 />
             )
         }
-    
+
     {/*Hauler Routes*/}
 
         if (route.name == 'MyPickups') {
@@ -115,7 +115,8 @@ export default class DemoRoute extends Component {
             return (
                 <NewListing
                     navigator = { navigator }
-                    username = { route.username }
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
@@ -124,7 +125,8 @@ export default class DemoRoute extends Component {
             return (
                 <NewListingContinued
                     navigator = { navigator }
-                    username = { route.username }
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }

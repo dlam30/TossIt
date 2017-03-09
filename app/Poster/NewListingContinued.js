@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
    View, Text, Button, TextInput
 } from 'react-native'
+import ApiHandler from '../API/ApiHandler'
 
 export default class NewListingContinued extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class NewListingContinued extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
+                <ApiHandler ref='db'/>
                 <View style={{flex: 1}}>
                     <Text>Upload picture/picture displayed here</Text>
                 </View>
@@ -69,7 +71,25 @@ export default class NewListingContinued extends Component {
         )
     }
 
-    _isPress = () => { 
-        this.props.navigator.popN(2)
+    _isPress = () => {
+        var data = {
+            new_item : {
+                description: this.props.description,
+                item       : this.props.item,
+                location   : this.state.location,
+                payment    : this.state.payment,
+                pickupDate : this.state.pickupDate,
+                size       : this.props.size,
+                time       : this.state.time,
+                title      : this.props.title,
+                weight     : this.props.weight
+            }
+        }
+        // db.refs.postItem('Matt', data, (response) => {
+        //     if (response) {
+        //         alert('Posted!');
+        //         this.props.navigator.popN(2);
+        //     }
+        // });
     }
 }
