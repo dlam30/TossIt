@@ -15,14 +15,14 @@ import Root from './app/Root'
 
 export default class Demo extends Component {
     render() {
-    // 	return(
-    // 		<View>
-    // 			<DemoIndex />
-    // 		</View>
+    //return(
+ 		//<View>
+ 			//<DemoIndex />
+ 		//</View>
 
-    // 	);
+ 	//);
     return (
-        <Root />
+        <DemoRoute />
     );
   }
 }

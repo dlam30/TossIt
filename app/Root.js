@@ -13,7 +13,8 @@ import {
   TouchableHighlight,
   StatusBar,
   TextInput,
-  View
+  View,
+  Button
 } from 'react-native';
 import MapView from 'react-native-maps';
 
