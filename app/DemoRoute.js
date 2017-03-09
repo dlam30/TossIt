@@ -74,6 +74,7 @@ export default class DemoRoute extends Component {
                 <MyPickups
                     navigator = { navigator }
                     username = { route.username }
+                    // {...route.passProps}
                 />
             )
         }
@@ -83,7 +84,8 @@ export default class DemoRoute extends Component {
             return (
                 <DemoItem
                     navigator = { navigator }
-                    username = { route.username }
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
@@ -93,7 +95,8 @@ export default class DemoRoute extends Component {
             return (
                 <Root
                     navigator = { navigator }
-                    username = { route.username }
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
@@ -106,7 +109,8 @@ export default class DemoRoute extends Component {
             return (
                 <MyListings
                     navigator = { navigator }
-                    username = { route.username }
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }

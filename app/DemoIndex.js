@@ -2,24 +2,26 @@ import React, { Component } from 'react'
 import {
    View, Text, Button, TextInput
 } from 'react-native'
+import ApiHandler from './API/ApiHandler'
 
 import HaulerRoute from './Hauler/HaulerRoute'
 import PosterRoute from './Poster/PosterRoute'
 export default class DemoIndex extends Component {
     constructor(props) {
         super(props);
-        this.state = {username: 'TestUser',
+        this.state = {username: '',
                       password: 'password'}
     }
     render() {
         return (
             <View>
+                <ApiHandler ref='db'/>
                 <Text>Username: </Text>
                 <TextInput
                     style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
-                    // onChangeText = {(text) => this.setState({ text })}
-                    // placeholder = 'Type here'
+                    onChangeText = {(text) => this.setState({ username: text })}
+                    placeholder = 'Type your username here'
                     value = { this.state.username }
                 />
                 <Text>Password: </Text>
@@ -55,10 +57,25 @@ export default class DemoIndex extends Component {
     }
 
     _isPressPoster = () => {
-        this.props.navigator.push({
-            title: 'My Listings',
-            name: 'MyListings',
-            username: this.state.username
-        })
+        var array = [];
+        this.refs.db.getItem(this.state.username, (response) => {
+            if (response) {
+                for (var key in response) {
+                    if (response.hasOwnProperty(key)) {
+                        array.push(response[key]);
+                    }
+                }
+                // console.log(array);
+                this.props.navigator.push({
+                    title: 'My Listings',
+                    name: 'MyListings',
+                    passProps: {
+                        username: this.state.username,
+                        array   : array
+                    }
+                    // username: this.state.username
+                })
+            }
+        });
     }
 }

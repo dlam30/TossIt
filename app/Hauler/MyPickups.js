@@ -6,14 +6,12 @@ import {
 export default class MyPickups extends Component {
     constructor(props) {
         super(props);
-        this.state = {username: 'TestUser',
-                      password: 'password'}
     }
     render() {
         return (
             <View style={{flex: 1}}>
                 <ScrollView><Text>List of pickups goes here</Text></ScrollView>
-                
+
                 <View>
                     <Button
                         onPress = {this._isPressMap}
@@ -27,7 +25,7 @@ export default class MyPickups extends Component {
                         title = 'DemoItem'
                         color = 'black'>
                     </Button>
-                
+
                 </View>
             </View>
 

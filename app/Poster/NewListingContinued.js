@@ -73,23 +73,20 @@ export default class NewListingContinued extends Component {
 
     _isPress = () => {
         var data = {
-            new_item : {
-                description: this.props.description,
-                item       : this.props.item,
-                location   : this.state.location,
-                payment    : this.state.payment,
-                pickupDate : this.state.pickupDate,
-                size       : this.props.size,
-                time       : this.state.time,
-                title      : this.props.title,
-                weight     : this.props.weight
-            }
+            description: this.props.description,
+            item       : this.props.item,
+            location   : this.state.location,
+            payment    : this.state.payment,
+            pickupDate : this.state.pickupDate,
+            size       : this.props.size,
+            time       : this.state.time,
+            title      : this.props.title,
+            weight     : this.props.weight
         }
-        // db.refs.postItem('Matt', data, (response) => {
-        //     if (response) {
-        //         alert('Posted!');
-        //         this.props.navigator.popN(2);
-        //     }
-        // });
+        //this.refs.db.postItem(username, data);
+        var array = [];
+        this.refs.db.postItem(this.props.username, this.props.item, data);
+        alert('Posted!');
+        this.props.navigator.popN(2);
     }
 }

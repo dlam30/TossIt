@@ -76,8 +76,8 @@ export default class ApiHandler extends Component {
     /**
      * A function to post a new item
      */
-    postItem = (username, data) => {
-        var _url = 'users/' + username + '/post_list/';
+    postItem = (username, item, data) => {
+        var _url = 'users/' + username + '/post_list/' + item;
         db.ref(_url).set(data);
     }
 }

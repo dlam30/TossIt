@@ -88,7 +88,8 @@ export default class NewListing extends Component {
                 item: this.state.item,
                 description: this.state.description,
                 size: this.state.size,
-                weight: this.state.weight
+                weight: this.state.weight,
+                username: this.props.username
             }
             // username: this.state.username
         })
