@@ -13,8 +13,8 @@ To use the exisiting code:
 5. Then run the application using:
    react-native run-android
 
-Potential problems:
-SDK Version too low:
+Potential problems:  
+SDK Version too low:  
   Make sure Android Studio is the lastest version
   Then use Android Studio to open the Android folder
   The same error should occur and Android Studio will ask to auto fix the version problem
