@@ -15,9 +15,9 @@ To use the exisiting code:
 
 Potential problems:  
 SDK Version too low:  
-  Make sure Android Studio is the lastest version
-  Then use Android Studio to open the Android folder
-  The same error should occur and Android Studio will ask to auto fix the version problem
-  After its fixed and gradle is synced, goto Tools >> Make Project
+ 1. Make sure Android Studio is the lastest version
+ 2. Then use Android Studio to open the Android folder
+ 3. The same error should occur and Android Studio will ask to auto fix the version problem
+ 4. After its fixed and gradle is synced, goto Tools >> Make Project
 
 TBC...
