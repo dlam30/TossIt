@@ -11,7 +11,9 @@ import TestRoute from './examples/TestRoute'
 import DemoRoute from './app/DemoRoute'
 import DemoIndex from './app/DemoIndex'
 
+import Login from './app/Login/Login'
 import Root from './app/Root'
+import Route from './app/Route'
 
 export default class Demo extends Component {
     render() {
@@ -22,7 +24,9 @@ export default class Demo extends Component {
 
  	//);
     return (
-        <DemoRoute />
+        //<DemoRoute /> Use this one to revert
+        //<Login />
+        <Route />
     );
   }
 }

@@ -14,7 +14,8 @@ import {
   StatusBar,
   TextInput,
   View,
-  Button
+  Button,
+  Image,
 } from 'react-native';
 import MapView from 'react-native-maps';
 
@@ -31,6 +32,7 @@ var colors = ['#ddd', '#efefef', 'red', '#666', 'rgba(0,0,0,.1)', '#ededed'];
 var backgroundcolors = ['green', 'black', 'orange', 'blue', 'purple', 'pink'];
 
 export default class TossIt extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -73,7 +75,7 @@ export default class TossIt extends Component {
     }
     render() {
     return (
-      <View style={styles.container}>
+        <View style={styles.container}>
         <MapView 
             style={styles.map}
             mapType="standard"
@@ -90,22 +92,79 @@ export default class TossIt extends Component {
             description="A very good STEM school."
         />
         </MapView>
-        <View style={styles.container}>
-            <TouchableHighlight underlayColor = {'red'} onPress = {() => this._changeStyle()} style={{backgroundColor: this.state.backgroundcolors}}>
-                <Text style = {styles.button}>
-                   POST
-                </Text>
-             </TouchableHighlight>
-            <Text>
-            Latitude: {this.state.region.latitude}{'\n'}
-            Longitude: {this.state.region.longitude}{'\n'}
-            LatitudeDelta: {this.state.region.latitudeDelta}{'\n'}
-            LongitudeDelta: {this.state.region.latitudeDelta}
-            </Text>
+        <View style={styles.toolbar}>
+            <TouchableHighlight onPress={this._onPressBack}>
+                <Image
+                    
+                    source = {require('../Images/icon.png')}
+                    >
+                    
+                </Image>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this._onPressBack}
+                style = {{paddingTop:7}}>
+                <Image
+  
+                    source = {require('../Images/icoNavDiscover2Active@2x.png')}
+                    >
+                    
+                </Image>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
+                style = {{paddingTop:7}}>
+                <Image
+                    source = {require('../Images/icoNavMessageNormal@2x.png')}
+                    activeOpacity = '50'
+                    underlayColor = 'gray'>
+                  
+                </Image>
+            </TouchableHighlight>
+            <Button
+                onPress={this._onPressPoster}
+                style = {styles.toolbarButton}
+                title = "Poster">
+            </Button>
+            <Button
+                onPress={this._onPressHauler}
+                style = {styles.toolbarButton}
+                title = "Hauler">
+            </Button>
+            <TouchableHighlight onPress={this._onPressBack} underlayColor = {'gray'} activeOpacity = {50}
+                style = {{paddingTop:7}}>
+                <Image
+                    source = {require('../Images/iconNavHomeNormal@2x.png')}
+                    >
+                </Image>
+            </TouchableHighlight>
+            
         </View>
       </View>
     );
     }
+     _onPressBack = () => {
+        this.props.navigator.pop()
+        //this.props.navigator.push({
+        //    title: 'My Pickups',
+        //    name: 'MyPickups',
+        //    username: this.state.username
+    }
+    _onPressPoster = () => {
+        //this.props.navigator.pop()
+        this.props.navigator.push({
+            title: 'My Pickups',
+            name: 'MyPickups',
+            username: this.state.username
+        })
+    }
+    _onPressHauler = () => {
+        //this.props.navigator.pop()
+        this.props.navigator.push({
+            title: 'My Listings',
+            name: 'MyListings',
+            username: this.state.username
+        })
+    }
+    
 }
 
 const styles = StyleSheet.create({
@@ -117,7 +176,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    //textAlign: 'center',
     margin: 10,
   },
   instructions: {
@@ -127,12 +186,25 @@ const styles = StyleSheet.create({
   },
   map: {
       width: width,
-      height: height * 2/3
+      height: height - 50 // * 2/3
   },
   button: {
       borderWidth: 1,
       padding: 25,
       borderColor: 'black'
+  },
+  toolbar: {
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+  },
+  toolbarButton: {
+      width: 50,
+      color:'#fff',
+      //textAlign: 'center'
+  },
+  toolbarTH: {
+      width: 50,
+      //textAlign: 'center'
   },
 });
 

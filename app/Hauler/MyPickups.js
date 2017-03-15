@@ -25,13 +25,20 @@ export default class MyPickups extends Component {
                         title = 'DemoItem'
                         color = 'black'>
                     </Button>
-
+                     <Button
+                        onPress = {this._isPressBack}
+                        style = {{height: 50, borderWidth: 1, borderColor: 'black' }}
+                        title = 'Back'
+                        color = 'black'>
+                    </Button>
                 </View>
             </View>
 
         )
     }
-
+    _isPressBack = () => {
+        this.props.navigator.pop()
+    }
     _isPressDemo = () => {
         this.props.navigator.push({
             title: 'Demo Item',
@@ -43,7 +50,8 @@ export default class MyPickups extends Component {
     _isPressMap = () => {
         this.props.navigator.push({
             title: 'Map Demo',
-            name: 'Root',
+            //name: 'Root',
+            name: 'Map',
             // username: this.state.username
         })
     }
