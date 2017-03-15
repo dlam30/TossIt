@@ -20,3 +20,4 @@ SDK Version too low:
   The same error should occur and Android Studio will ask to auto fix the version problem
   After its fixed and gradle is synced, goto Tools >> Make Project
 
+TBC...
