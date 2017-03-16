@@ -151,16 +151,16 @@ export default class TossIt extends Component {
     _onPressPoster = () => {
         //this.props.navigator.pop()
         this.props.navigator.push({
-            title: 'My Pickups',
-            name: 'MyPickups',
+            title: 'My Listings',
+            name: 'MyListings',
             username: this.state.username
         })
     }
     _onPressHauler = () => {
         //this.props.navigator.pop()
         this.props.navigator.push({
-            title: 'My Listings',
-            name: 'MyListings',
+            title: 'My Pickups',
+            name: 'MyPickups',
             username: this.state.username
         })
     }

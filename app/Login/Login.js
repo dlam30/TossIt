@@ -42,7 +42,7 @@ export default class LoginScreen extends Component {
                     secureTextEntry = { true }
                 />
                 <Button
-                    onPress = {this._isPressMap}
+                    onPress = {this._isPressLogin}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black',}}
                     title = 'Log In'
                     color = 'transparent'>
@@ -57,7 +57,7 @@ export default class LoginScreen extends Component {
         )
     }
     
-    _isPressMap = () => {
+    _isPressLogin = () => {
         this.props.navigator.push({
             title: 'Map',
             name: 'Map',

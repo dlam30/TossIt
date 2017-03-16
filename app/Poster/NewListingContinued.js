@@ -86,7 +86,7 @@ export default class NewListingContinued extends Component {
         //this.refs.db.postItem(username, data);
         var array = [];
         this.refs.db.postItem(this.props.username, this.props.item, data);
-        alert('Posted!');
+        alert('Your Item has been Posted!');
         this.props.navigator.popN(2);
     }
 }

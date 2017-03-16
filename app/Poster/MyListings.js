@@ -13,10 +13,22 @@ export default class MyListings extends Component {
     render() {
         var array = this.props.array;
         var result = [];
-        array.forEach((item) => {
+
+        if (array != null) 
+        {
+            array.forEach((item) => {
             console.log(item);
             result.push(<ItemList info={item} key={item.item}/>);
         });
+        }
+        else 
+        {
+            result.push(<Text>No Items Listed</Text>);
+        }
+        /*array.forEach((item) => {
+            console.log(item);
+            result.push(<ItemList info={item} key={item.item}/>);
+        });*/
         return (
             <View style={{flex: 1}}>
                 <Text>Hi {this.props.username} !!!</Text>
@@ -48,4 +60,9 @@ export default class MyListings extends Component {
             // username: this.state.username
         })
     }
+    
+    _onRegionChangeComplete(region)
+    {
+
+    }   
 }
