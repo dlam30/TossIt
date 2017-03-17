@@ -1,17 +1,19 @@
-This is the Github for the TossIt waste and recycling crowdsourcing application designed for the class CS4251.
+This is the Github for the TossIt waste and recycling crowdsourcing application.
 
 To use the exisiting code:
 
 1. Clone the Repository
 2. CD to the TossIt directory
 3. Make sure you have Node.js installed so you can use NPM from the command line
-4. Run the following commands while in the project directory:
-   npm install
-   npm install react-native-maps --save
-   npm install firebase --save
-   react-native link
-5. Then run the application using:
-   react-native run-android
+4. Make sure you have React-Native and its necessary components installed, if not goto: <br />
+   -https://facebook.github.io/react-native/docs/getting-started.html
+5. Run the following commands while in the project directory:<br />
+   -npm install<br />
+   -npm install react-native-maps --save<br />
+   -npm install firebase --save<br />
+   -react-native link<br />
+6. Then run the application using:<br />
+   -react-native run-android<br />
 
 Potential problems:  
 SDK Version too low:  
