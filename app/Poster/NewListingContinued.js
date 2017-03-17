@@ -7,17 +7,20 @@ import ApiHandler from '../API/ApiHandler'
 export default class NewListingContinued extends Component {
     constructor(props) {
         super(props);
-        this.state = {location: '',
+        this.state = {  location: '',
                         pickupDate: '',
                         time: '',
-                        payment: ''}
+                        payment: '',
+                        helperText: ''}
     }
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <ApiHandler ref='db'/>
-                <View style={{flex: 1}}>
-                    <Text>Upload picture/picture displayed here</Text>
+                <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
+                    <Text style={{fontSize: 18, color: 'gray', fontWeight: 'bold'}}>
+                        {this.state.helperText}
+                    </Text>
                 </View>
 
                 <View style={{flex: 1}}>
@@ -26,8 +29,9 @@ export default class NewListingContinued extends Component {
                         style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
                         underlineColorAndroid = 'rgba(0,0,0,0)'
                         onChangeText = {(text) => this.setState({ location: text })}
-                        placeholder = 'Type address Here'
+                        placeholder = ''
                         value = { this.state.location }
+                        onFocus = {() => this.setState({ helperText: 'Where is your junk located?' })}
                     />
 
                     <Text>Pickup Date: </Text>
@@ -35,8 +39,9 @@ export default class NewListingContinued extends Component {
                         style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
                         underlineColorAndroid = 'rgba(0,0,0,0)'
                         onChangeText = {(text) => this.setState({ pickupDate: text })}
-                        placeholder = 'Type pickup date here'
+                        placeholder = ''
                         value = { this.state.pickupDate }
+                        onFocus = {() => this.setState({ helperText: 'What DAY do you want the hauler come?' })}
                     />
 
                     <Text>Pickup Time: </Text>
@@ -44,8 +49,9 @@ export default class NewListingContinued extends Component {
                         style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
                         underlineColorAndroid = 'rgba(0,0,0,0)'
                         onChangeText = {(text) => this.setState({ pickupTime: text })}
-                        placeholder = 'Type description here'
+                        placeholder = ''
                         value = { this.state.pickupTime }
+                        onFocus = {() => this.setState({ helperText: 'What TIME should the hauler arrive?' })}
                     />
 
                     <Text>Payment Amount: </Text>
@@ -53,8 +59,9 @@ export default class NewListingContinued extends Component {
                         style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
                         underlineColorAndroid = 'rgba(0,0,0,0)'
                         onChangeText = {(text) => this.setState({ payment: text })}
-                        placeholder = 'Type size here'
+                        placeholder = ''
                         value = { this.state.payment }
+                        onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
                     />
                 </View>
 
@@ -86,7 +93,7 @@ export default class NewListingContinued extends Component {
         //this.refs.db.postItem(username, data);
         var array = [];
         this.refs.db.postItem(this.props.username, this.props.item, data);
-        alert('Your Item has been Posted!');
+        alert('Posted!');
         this.props.navigator.popN(2);
     }
 }
