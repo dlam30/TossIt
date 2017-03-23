@@ -3,6 +3,7 @@ import {
    View, Text, TouchableHighlight, TextInput, Image, StyleSheet, Navigator,
    Dimensions, Button, StatusBar
 } from 'react-native'
+import ApiHandler from '../API/ApiHandler'
 
 var {height, width} = Dimensions.get('window');
 
@@ -10,6 +11,7 @@ export default class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {username: '',
+                      name: '',
                       password: '',
                       verifyPassword: ''}
     }
@@ -17,9 +19,10 @@ export default class LoginScreen extends Component {
         return (
             //<Image source = {require('../Images/ST.jpg')}
             <View style = {styles.container}>
-                <Image source = {require('../Images/logo@3x.png')}>                   
+                <ApiHandler ref="db"/>
+                <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
-            
+
                 <Text style = {{color: 'white', fontFamily: 'sans-serif-medium', paddingTop: 56, paddingBottom: 15,}}>
                     Pick up with TossIt
                 </Text>
@@ -29,6 +32,13 @@ export default class LoginScreen extends Component {
                     onChangeText = {(text) => this.setState({ username: text })}
                     placeholder = 'Username'
                     value = { this.state.username }
+                />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ name: text })}
+                    placeholder = 'Name'
+                    value = { this.state.name }
                 />
                 <Text>
                 </Text>
@@ -55,7 +65,7 @@ export default class LoginScreen extends Component {
                     secureTextEntry = { true }
                 />
                 <Button
-                    onPress = {this._isPressMap}
+                    onPress = {this._createUser}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
                     title = 'Create Account'
                     color = 'transparent'>
@@ -74,10 +84,22 @@ export default class LoginScreen extends Component {
                         Touchable Back
                     </Text>
                 </TouchableHighlight>
-                
+
             </View>
         )
     }
+
+    _createUser = () => {
+        if (this.state.password != this.state.verifyPassword) {
+            alert('Password mismatch !!\nPlease check.');
+        } else {
+            this.refs.db.createNewUser(this.state.username.toLowerCase(),
+                    this.state.name, this.state.password, (response) => {
+                alert(response);
+            });
+        }
+    }
+
     _isPressLogin = () => {
         this.props.navigator.push({
             title: 'Login',
@@ -90,6 +112,7 @@ export default class LoginScreen extends Component {
             name: 'Map',
             username: this.state.username
         })
+
     }
 }
 const styles = StyleSheet.create({
