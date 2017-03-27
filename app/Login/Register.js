@@ -13,7 +13,9 @@ export default class LoginScreen extends Component {
         this.state = {username: '',
                       name: '',
                       password: '',
-                      verifyPassword: ''}
+                      verifyPassword: '',
+                      email: '',
+                      phone: ''}
     }
     render() {
         return (
@@ -64,6 +66,20 @@ export default class LoginScreen extends Component {
                     //// onChangeText = {(text) => this.setState({ text })}
                     secureTextEntry = { true }
                 />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ email: text })}
+                    placeholder = 'Email Address'
+                    value = { this.state.email }
+                />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ phone: text })}
+                    placeholder = 'Phone Number (XXX-XXX-XXXX)'
+                    value = { this.state.phone }
+                />
                 <Button
                     onPress = {this._createUser}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
@@ -93,9 +109,15 @@ export default class LoginScreen extends Component {
         if (this.state.password != this.state.verifyPassword) {
             alert('Password mismatch !!\nPlease check.');
         } else {
+            var info = {
+                name: this.state.name,
+                email: this.state.email,
+                phone: this.state.phone
+            }
             this.refs.db.createNewUser(this.state.username.toLowerCase(),
-                    this.state.name, this.state.password, (response) => {
+                    info, this.state.password, (response, success) => {
                 alert(response);
+                if (success) this._isPressLogin();
             });
         }
     }
