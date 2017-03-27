@@ -3,6 +3,7 @@ import {
    View, Text, TouchableHighlight, TextInput, Image, StyleSheet, Navigator,
    Dimensions, Button, StatusBar
 } from 'react-native'
+import ApiHandler from '../API/ApiHandler'
 
 var {height, width} = Dimensions.get('window');
 
@@ -10,16 +11,20 @@ export default class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {username: '',
+                      name: '',
                       password: '',
-                      verifyPassword: ''}
+                      verifyPassword: '',
+                      email: '',
+                      phone: ''}
     }
     render() {
         return (
             //<Image source = {require('../Images/ST.jpg')}
             <View style = {styles.container}>
-                <Image source = {require('../Images/logo@3x.png')}>                   
+                <ApiHandler ref="db"/>
+                <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
-            
+
                 <Text style = {{color: 'white', fontFamily: 'sans-serif-medium', paddingTop: 56, paddingBottom: 15,}}>
                     Pick up with TossIt
                 </Text>
@@ -29,6 +34,13 @@ export default class LoginScreen extends Component {
                     onChangeText = {(text) => this.setState({ username: text })}
                     placeholder = 'Username'
                     value = { this.state.username }
+                />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ name: text })}
+                    placeholder = 'Name'
+                    value = { this.state.name }
                 />
                 <Text>
                 </Text>
@@ -54,8 +66,22 @@ export default class LoginScreen extends Component {
                     //// onChangeText = {(text) => this.setState({ text })}
                     secureTextEntry = { true }
                 />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ email: text })}
+                    placeholder = 'Email Address'
+                    value = { this.state.email }
+                />
+                <TextInput
+                    style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
+                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                    onChangeText = {(text) => this.setState({ phone: text })}
+                    placeholder = 'Phone Number (XXX-XXX-XXXX)'
+                    value = { this.state.phone }
+                />
                 <Button
-                    onPress = {this._isPressMap}
+                    onPress = {this._createUser}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
                     title = 'Create Account'
                     color = 'transparent'>
@@ -74,10 +100,28 @@ export default class LoginScreen extends Component {
                         Touchable Back
                     </Text>
                 </TouchableHighlight>
-                
+
             </View>
         )
     }
+
+    _createUser = () => {
+        if (this.state.password != this.state.verifyPassword) {
+            alert('Password mismatch !!\nPlease check.');
+        } else {
+            var info = {
+                name: this.state.name,
+                email: this.state.email,
+                phone: this.state.phone
+            }
+            this.refs.db.createNewUser(this.state.username.toLowerCase(),
+                    info, this.state.password, (response, success) => {
+                alert(response);
+                if (success) this._isPressLogin();
+            });
+        }
+    }
+
     _isPressLogin = () => {
         this.props.navigator.push({
             title: 'Login',
@@ -90,6 +134,7 @@ export default class LoginScreen extends Component {
             name: 'Map',
             username: this.state.username
         })
+
     }
 }
 const styles = StyleSheet.create({

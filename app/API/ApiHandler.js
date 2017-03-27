@@ -44,21 +44,22 @@ export default class ApiHandler extends Component {
     /**
      * A function to create a new user
      */
-    createNewUser = (username, password, name) => {
-        var data = {password: password}
-
-        var _url = URL + '/users.json';
-        fetch(_url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-                body: JSON.stringify(data)
-            }).then((response) => response.text()
-            .then((responseText) => {
-                console.log(JSON.parse(responseText));
-            }))
+    createNewUser = (username, info, password, callback) => {
+        var _url = 'users/' + username;
+        db.ref(_url).once('value', (snapshot) => {
+            if (snapshot.val()) {
+                callback('This user already exists', false);
+            } else {
+                db.ref(_url).set({
+                    name: info.name,
+                    password: password,
+                    email: info.email,
+                    phone_number: info.phone,
+                    post_list: ''
+                });
+                callback('User ' + username + ' successfully created.', true);
+            }
+        });
     }
 
     /**;
