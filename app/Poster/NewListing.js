@@ -76,10 +76,16 @@ export default class NewListing extends Component {
                 </View>
                 <View style={{}}>
                     <Button
-                        onPress = {this._isPress}
-                        style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
+                        onPress = {this._onPressCont}
+                        style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
                         title = 'Continue'
-                        color = 'black'>
+                        color = 'limegreen'>
+                    </Button>
+                    <Button
+                        onPress = {this._onPressBack}
+                        style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
+                        title = 'Go Back'
+                        color = 'limegreen'>
                     </Button>
                 </View>
             </View>
@@ -87,7 +93,11 @@ export default class NewListing extends Component {
         )
     }
 
-    _isPress = () => {
+    _onPressBack = () => {
+        this.props.navigator.pop()
+    }
+
+    _onPressCont = () => {
         this.props.navigator.push({
             title: 'New Listing cont..',
             name: 'NewListingContinued',

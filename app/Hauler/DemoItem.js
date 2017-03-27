@@ -14,6 +14,7 @@ export default class DemoItem extends Component {
     }
     render() {
         return (
+            <View style={{flex: 1}}>
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <View style={{flex: 0.4}}>
                     <Image
@@ -40,11 +41,21 @@ export default class DemoItem extends Component {
                     <Text>Time: 6:00PM</Text>
                 </View>
             </View>
+            <Button
+                onPress = {this._onPressBack}
+                style = {{height: 30, borderWidth: 1, borderColor: 'limegreen' }}
+                title = 'Go Back'
+                color = 'limegreen'>
+            </Button>
+            </View>
 
         )
     }
 
-    _isPress = () => { 
+    _onPressBack = () => {
+        this.props.navigator.pop()
+    }
+    _onPressPost = () => { 
         this.props.navigator.push({
             title: 'New Listing cont..',
             name: 'NewListingContinued',

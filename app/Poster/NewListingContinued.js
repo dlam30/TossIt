@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput
+   View, Text, Button, TextInput, ScrollView
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
 
@@ -11,7 +11,7 @@ export default class NewListingContinued extends Component {
                         pickupDate: '',
                         time: '',
                         payment: '',
-                        helperText: ''}
+                        helperText: 'Almost Done!'}
     }
     render() {
         return (
@@ -23,7 +23,7 @@ export default class NewListingContinued extends Component {
                     </Text>
                 </View>
 
-                <View style={{flex: 1}}>
+                <ScrollView style={{flex: 1}}>
                     <Text>Location: </Text>
                     <TextInput
                         style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -63,14 +63,20 @@ export default class NewListingContinued extends Component {
                         value = { this.state.payment }
                         onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
                     />
-                </View>
+                </ScrollView>
 
                 <View style={{}}>
                     <Button
-                        onPress = {this._isPress}
-                        style = {{height: 30, borderWidth: 1, borderColor: 'black' }}
+                        onPress = {this._onPressPost}
+                        style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
                         title = 'Post'
-                        color = 'black'>
+                        color = 'limegreen'>
+                    </Button>
+                    <Button
+                        onPress = {this._onPressBack}
+                        style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
+                        title = 'Go Back'
+                        color = 'limegreen'>
                     </Button>
                 </View>
             </View>
@@ -78,7 +84,11 @@ export default class NewListingContinued extends Component {
         )
     }
 
-    _isPress = () => {
+    _onPressBack = () => {
+        this.props.navigator.pop()
+    }
+
+    _onPressPost = () => {
         var data = {
             description: this.props.description,
             item       : this.props.item,

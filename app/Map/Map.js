@@ -92,7 +92,53 @@ export default class TossIt extends Component {
             description="A very good STEM school."
         />
         </MapView>
-        <View style={styles.toolbar}>
+
+        <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
+            <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
+                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Image 
+                        source = {require('../Images/Icons/Search.png')}
+                        style={{width: 25, height: 25}}>               
+                    </Image>
+                    <Text style={styles.dockText}>EXLPORE</Text>
+                </View>
+            </TouchableHighlight>
+            
+            <TouchableHighlight onPress={this._onPressDockMyPickups}
+                style = {{flex: 0.25, flexDirection: 'row'}}>
+                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Image 
+                        source = {require('../Images/Icons/Pickup.png')}
+                        style={{width: 25, height: 25}}>               
+                    </Image>
+                    <Text style={styles.dockText}>PICKUPS</Text>
+                </View>
+            </TouchableHighlight>
+                
+            <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
+                style = {{flex: 0.25, flexDirection: 'row'}}>
+                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Image 
+                        source = {require('../Images/Icons/Inbox.png')}
+                        style={{width: 25, height: 25}}>               
+                    </Image>
+                    <Text style={styles.dockText}>INBOX</Text>
+                </View>
+            </TouchableHighlight>
+            
+            <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
+                style = {{flex: 0.25, flexDirection: 'row'}}>
+                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Image 
+                        source = {require('../Images/Icons/Profile.png')}
+                        style={{width: 25, height: 25}}>               
+                    </Image>
+                    <Text style={styles.dockText}>PROFILE</Text>
+                </View>
+            </TouchableHighlight>
+        </View>
+        {/* THI's ORIGINAL TOOLBAR ---------
+            <View style={styles.toolbar}>
             <TouchableHighlight onPress={this._onPressBack}>
                 <Image
                     
@@ -137,19 +183,25 @@ export default class TossIt extends Component {
                 </Image>
             </TouchableHighlight>
             
-        </View>
+        </View>*/}
       </View>
     );
     }
+
+    _onPressDockMyPickups = () => {
+        this.props.navigator.push({
+            title: 'My Pickups',
+            name: 'MyPickups',
+            passProps: {
+                username: this.props.username
+            }
+        })
+    }
+
      _onPressBack = () => {
         this.props.navigator.pop()
-        //this.props.navigator.push({
-        //    title: 'My Pickups',
-        //    name: 'MyPickups',
-        //    username: this.state.username
     }
     _onPressPoster = () => {
-        //this.props.navigator.pop()
         this.props.navigator.push({
             title: 'My Listings',
             name: 'MyListings',
@@ -157,7 +209,6 @@ export default class TossIt extends Component {
         })
     }
     _onPressHauler = () => {
-        //this.props.navigator.pop()
         this.props.navigator.push({
             title: 'My Pickups',
             name: 'MyPickups',
@@ -185,6 +236,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   map: {
+      flex: 0.92,
       width: width,
       height: height - 50 // * 2/3
   },
@@ -206,6 +258,10 @@ const styles = StyleSheet.create({
       width: 50,
       //textAlign: 'center'
   },
+  dockText: {
+    fontSize: 11,
+    fontWeight: 'bold'
+  }
 });
 
 AppRegistry.registerComponent('TossIt', () => TossIt);
