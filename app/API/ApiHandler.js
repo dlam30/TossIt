@@ -62,7 +62,27 @@ export default class ApiHandler extends Component {
         });
     }
 
-    /**;
+    /**
+     * A function to validate when users login
+     */
+    validation = (info, callback) => {
+        var username = info.username;
+        var password = info.password;
+        var _url = 'users/' + username;
+        db.ref(_url).once('value', (snapshot) => {
+            if (snapshot.val()) {
+                if (password != snapshot.val().password) {
+                    callback('Password mismatch!', false);
+                } else {
+                    callback('', true);
+                }
+            } else {
+                callback('This user does not exist, please sign up!', false);
+            }
+        });
+    }
+
+    /**
      * A function to retrieve user's list of posting items
      */
     getItem = (username, callback) => {

@@ -3,6 +3,7 @@ import {
    View, Text, TouchableHighlight, TextInput, Image, StyleSheet, Navigator,
    Dimensions, Button, StatusBar
 } from 'react-native'
+import ApiHandler from '../API/ApiHandler'
 
 var {height, width} = Dimensions.get('window');
 
@@ -16,9 +17,10 @@ export default class LoginScreen extends Component {
         return (
             //<Image source = {require('../Images/ST.jpg')}
             <View style = {styles.container}>
-                <Image source = {require('../Images/logo@3x.png')}>                   
+                <ApiHandler ref="db"/>
+                <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
-            
+
                 <Text style = {{color: 'white', fontFamily: 'sans-serif-medium', paddingTop: 56}}>
                     Pick up with TossIt
                 </Text>
@@ -47,7 +49,7 @@ export default class LoginScreen extends Component {
                     title = 'Log In'
                     color = 'transparent'>
                 </Button>
-                <Text 
+                <Text
                     onPress = {this._isPressRegister}
                     style = {{height: 30, textDecorationLine: 'underline', paddingTop:10,
                             color: 'white', fontFamily: 'sans-serif-medium'}}>
@@ -56,12 +58,23 @@ export default class LoginScreen extends Component {
             </View>
         )
     }
-    
+
     _isPressLogin = () => {
-        this.props.navigator.push({
-            title: 'Map',
-            name: 'Map',
-            username: this.state.username
+        // Validation
+        var info = {
+            username: this.state.username.toLowerCase(),
+            password: this.state.password
+        }
+        this.refs.db.validation(info, (response, success) => {
+            if (success) {
+                this.props.navigator.push({
+                    title: 'Map',
+                    name: 'Map',
+                    username: this.state.username
+                });
+            } else {
+                alert(response);
+            }
         })
     }
     _isPressRegister = () => {
