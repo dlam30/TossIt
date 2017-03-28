@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
    View, Text, Button, TextInput, ScrollView
 } from 'react-native'
+import ApiHandler from '../API/ApiHandler'
 
 export default class NewListing extends Component {
     constructor(props) {
@@ -11,6 +12,10 @@ export default class NewListing extends Component {
                         description: '',
                         size: '',
                         weight: '',
+                        location: '',
+                        pickupDate: '',
+                        time: '',
+                        payment: '',
                         helperText: 'Tap any field to get started!'}
     }
     render() {
@@ -72,13 +77,52 @@ export default class NewListing extends Component {
                             value = { this.state.weight }
                             onFocus = {() => this.setState({ helperText: 'How much does your item weigh approximately?' })}
                         />
+                        <Text>Location: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ location: text })}
+                            placeholder = ''
+                            value = { this.state.location }
+                            onFocus = {() => this.setState({ helperText: 'Where is your junk located?' })}
+                        />
+
+                        <Text>Pickup Date: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ pickupDate: text })}
+                            placeholder = ''
+                            value = { this.state.pickupDate }
+                            onFocus = {() => this.setState({ helperText: 'What DAY do you want the hauler come?' })}
+                        />
+
+                        <Text>Pickup Time: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ pickupTime: text })}
+                            placeholder = ''
+                            value = { this.state.pickupTime }
+                            onFocus = {() => this.setState({ helperText: 'What TIME should the hauler arrive?' })}
+                        />
+
+                        <Text>Payment Amount: </Text>
+                        <TextInput
+                            style = {{ height: 40, borderColor: 'gray', borderWidth: 1}}
+                            underlineColorAndroid = 'rgba(0,0,0,0)'
+                            onChangeText = {(text) => this.setState({ payment: text })}
+                            placeholder = ''
+                            value = { this.state.payment }
+                            onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
+                        />
                     </ScrollView>
                 </View>
                 <View style={{}}>
                     <Button
-                        onPress = {this._onPressCont}
+                        onPress = {this._onPressPost}
                         style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
-                        title = 'Continue'
+                        title = 'Post'
                         color = 'limegreen'>
                     </Button>
                     <Button
@@ -111,5 +155,26 @@ export default class NewListing extends Component {
             }
             // username: this.state.username
         })
+    }
+
+    _onPressPost = () => {
+        var data = {
+            description: this.state.description,
+            item       : this.state.item,
+            location   : this.state.location,
+            payment    : this.state.payment,
+            pickupDate : this.state.pickupDate,
+            size       : this.state.size,
+            time       : this.state.time,
+            title      : this.state.title,
+            weight     : this.state.weight
+        }
+        //this.refs.db.postItem(username, data);
+        var array = [];
+        // alert(this.props.username);
+        // alert(this.state.item);
+        this.refs.db.postItem(this.props.username, this.state.item, data);
+        alert('Posted!');
+        this.props.navigator.popN(2);
     }
 }
