@@ -101,6 +101,14 @@ export default class NewListingContinued extends Component {
             weight     : this.props.weight
         }
         //this.refs.db.postItem(username, data);
+// <<<<<<< HEAD
+//         var array = [];
+//         alert(this.props.username);
+        
+//         this.refs.db.postItem(this.props.username, this.props.item, data);
+//         // alert('Posted!');
+//         this.props.navigator.popN(2);
+// =======
         this.refs.db.postItem(this.props.username, this.props.item, data);
         alert('Posted!');
 
