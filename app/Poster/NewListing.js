@@ -21,6 +21,7 @@ export default class NewListing extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
+                <ApiHandler ref='db'/>
                 <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
                     <Text style={{fontSize: 18, color: 'gray', fontWeight: 'bold'}}>
                         {this.state.helperText}
