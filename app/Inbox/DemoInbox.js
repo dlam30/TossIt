@@ -13,7 +13,9 @@ import {
    Image
 } from 'react-native'
 
-export default class MyPickups extends Component {
+var {height, width} = Dimensions.get('window');
+
+export default class DemoInbox extends Component {
     constructor(props) {
         super(props);
     }
@@ -22,19 +24,10 @@ export default class MyPickups extends Component {
             <View style={{flex: 1}}>
 
             <View style={{flex: 0.92}}>
-                <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
-                    Pickups
-                </Text>
-                <Text style={{fontSize:20}}>You currently do not have any items listed.</Text>
-                <ScrollView>
-                    <Text>(List of Pickups from Firebase should go here)</Text>
-                </ScrollView>
-                <Button
-                    onPress = {this._onPressDemo}
-                    style = {{height: 50, borderWidth: 0.5, borderColor: 'black' }}
-                    title = 'Demo Pickup Item'
-                    color = '#dcdcdc'>
-                </Button>
+                <Image
+                    style={{flex: 1, height: height - 30, width: width}}
+                    source={require('../Images/inbox.png')}
+                />
             </View>
 
             <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
@@ -49,7 +42,8 @@ export default class MyPickups extends Component {
                     </View>
                 </TouchableHighlight>
             
-                <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
+                <TouchableHighlight onPress={this._onPressDockMyPickups} 
+                    style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image 
                             source = {require('../Images/Icons/Pickup.png')}
@@ -59,7 +53,7 @@ export default class MyPickups extends Component {
                     </View>
                 </TouchableHighlight>
                 
-                <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
+                <TouchableHighlight underlayColor = 'gray'
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image 
@@ -96,10 +90,10 @@ export default class MyPickups extends Component {
         })
     }
 
-    _onPressDockInbox = () => {
+    _onPressDockMyPickups = () => {
         this.props.navigator.push({
-            title: 'Inbox',
-            name: 'DemoInbox',
+            title: 'My Pickups',
+            name: 'MyPickups',
             passProps: {
                 username: this.props.username
             }

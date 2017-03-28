@@ -3,7 +3,7 @@ import {
    View, Text, Button, TextInput, Image
 } from 'react-native'
 
-export default class DemoItem extends Component {
+export default class ItemPage extends Component {
     constructor(props) {
         super(props);
         this.state = {title: '',

@@ -115,7 +115,7 @@ export default class TossIt extends Component {
                 </View>
             </TouchableHighlight>
                 
-            <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
+            <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
                 style = {{flex: 0.25, flexDirection: 'row'}}>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                     <Image 
@@ -192,6 +192,16 @@ export default class TossIt extends Component {
         this.props.navigator.push({
             title: 'My Pickups',
             name: 'MyPickups',
+            passProps: {
+                username: this.props.username
+            }
+        })
+    }
+
+    _onPressDockInbox = () => {
+        this.props.navigator.push({
+            title: 'Inbox',
+            name: 'DemoInbox',
             passProps: {
                 username: this.props.username
             }

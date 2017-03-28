@@ -12,11 +12,13 @@ import Index from './DemoIndex'
 import Login from './DemoLogin'
 
 import MyPickups from './Hauler/MyPickups'
-import DemoItem from './Hauler/DemoItem'
 
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
 import NewListingContinued from './Poster/NewListingContinued'
+
+import ItemPage from './Item/DemoItem'
+import DemoItem from './Item/ItemPage'
 
 import Root from './Root'
 
@@ -79,17 +81,6 @@ export default class DemoRoute extends Component {
             )
         }
 
-        if (route.name == 'DemoItem') {
-            // console.log("in Router to DemoItem" + route.username);
-            return (
-                <DemoItem
-                    navigator = { navigator }
-                    // username = { route.username }
-                    {...route.passProps}
-                />
-            )
-        }
-
         if (route.name == 'Root') {
             // console.log("in Router to Root" + route.username);
             return (
@@ -134,5 +125,30 @@ export default class DemoRoute extends Component {
                 />
             )
         }
+
+    {/*Item Routes*/}
+
+        if (route.name == 'DemoItem') {
+            // console.log("in Router to DemoItem" + route.username);
+            return (
+                <DemoItem
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'DemoItem') {
+            // console.log("in Router to DemoItem" + route.username);
+            return (
+                <DemoItem
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
     }
 }

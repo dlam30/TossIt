@@ -13,11 +13,15 @@ import Index from './DemoIndex'
 //import Login from './DemoLogin'
 
 import MyPickups from './Hauler/MyPickups'
-import DemoItem from './Hauler/DemoItem'
 
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
 import NewListingContinued from './Poster/NewListingContinued'
+
+import DemoItem from './Item/DemoItem'
+import ItemPage from './Item/ItemPage'
+
+import DemoInbox from './Inbox/DemoInbox'
 
 import Root from './Root'
 import Login from './Login/Login'
@@ -109,13 +113,13 @@ export default class Route extends Component {
             )
         }
 
-        if (route.name == 'DemoItem') {
-            // console.log("in Router to DemoItem" + route.username);
+        if (route.name == 'DemoInbox') {
+            // console.log("in Router to MyPickups" + route.username);
             return (
-                <DemoItem
+                <DemoInbox
                     navigator = { navigator }
-                    // username = { route.username }
-                    {...route.passProps}
+                    username = { route.username }
+                    // {...route.passProps}
                 />
             )
         }
@@ -158,6 +162,30 @@ export default class Route extends Component {
             // console.log("in Router to NewListingContinued " + route.username);
             return (
                 <NewListingContinued
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+    {/*Item Routes*/}
+
+        if (route.name == 'DemoItem') {
+            // console.log("in Router to DemoItem" + route.username);
+            return (
+                <DemoItem
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ItemPage') {
+            // console.log("in Router to ItemPage" + route.username);
+            return (
+                <ItemPage
                     navigator = { navigator }
                     // username = { route.username }
                     {...route.passProps}
