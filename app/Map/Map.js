@@ -224,12 +224,25 @@ export default class TossIt extends Component {
     }
 
     _onPressDockMyPickups = () => {
-        this.props.navigator.push({
-            title: 'My Pickups',
-            name: 'MyPickups',
-            passProps: {
-                username: this.props.username
+        var array = [];
+        var count = 0;
+        this.refs.db.getPickUpList(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
             }
+            console.log(array);
+            this.props.navigator.push({
+                title: 'My Pickups',
+                name: 'MyPickups',
+                passProps: {
+                    array: array,
+                    username: this.props.username
+                }
+            })
         })
     }
 
@@ -249,7 +262,6 @@ export default class TossIt extends Component {
     _onPressPoster = () => {
         var array = [];
         var count = 0;
-        var routes = this.props.navigator.state.routeStack;
         this.refs.db.getItem(this.props.username, (response) => {
             for (var key in response) {
                 if (response.hasOwnProperty(key)) {
@@ -268,6 +280,7 @@ export default class TossIt extends Component {
             })
         })
     }
+
     _onPressHauler = () => {
         this.props.navigator.push({
             title: 'My Pickups',
@@ -277,7 +290,6 @@ export default class TossIt extends Component {
             }
         })
     }
-
 }
 
 const styles = StyleSheet.create({

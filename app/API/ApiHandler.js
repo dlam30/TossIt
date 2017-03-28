@@ -95,6 +95,18 @@ export default class ApiHandler extends Component {
     }
 
     /**
+     * A function to retrieve list of pickup items
+     */
+    getPickUpList = (username, callback) => {
+        var _url = 'users/' + username + '/pickup_list/';
+        db.ref(_url).once('value', (snapshot) => {
+            if (snapshot.val()) {
+                callback(snapshot.val());
+            }
+        })
+    }
+
+    /**
      * A function to post a new item
      */
     postItem = (username, item, data) => {

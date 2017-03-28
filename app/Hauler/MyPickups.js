@@ -1,23 +1,35 @@
 import React, { Component } from 'react'
 import {
-   View, 
-   Text, 
-   Button, 
-   TextInput, 
-   TouchableHighlight, 
-   StyleSheet, 
-   ScrollView, 
-   AppRegistry, 
-   Dimensions, 
-   StatusBar, 
+   View,
+   Text,
+   Button,
+   TextInput,
+   TouchableHighlight,
+   StyleSheet,
+   ScrollView,
+   AppRegistry,
+   Dimensions,
+   StatusBar,
    Image
 } from 'react-native'
+import ItemList from '../Poster/ItemList'
 
 export default class MyPickups extends Component {
     constructor(props) {
         super(props);
     }
     render() {
+        var array = this.props.array;
+        var result = [];
+
+        if (array != null) {
+            array.forEach((item) => {
+                console.log(item);
+                result.push(<ItemList key={item.item} info={item} />);
+            });
+        } else {
+            result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);
+        }
         return (
             <View style={{flex: 1}}>
 
@@ -25,9 +37,8 @@ export default class MyPickups extends Component {
                 <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
                     Pickups
                 </Text>
-                <Text style={{fontSize:20}}>You currently do not have any items listed.</Text>
                 <ScrollView>
-                    <Text>(List of Pickups from Firebase should go here)</Text>
+                    <View>{ result }</View>
                 </ScrollView>
                 <Button
                     onPress = {this._onPressDemo}
@@ -38,44 +49,44 @@ export default class MyPickups extends Component {
             </View>
 
             <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
-                <TouchableHighlight onPress={this._onPressDockExplore} 
+                <TouchableHighlight onPress={this._onPressDockExplore}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Search.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>EXLPORE</Text>
                     </View>
                 </TouchableHighlight>
-            
+
                 <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Pickup.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>PICKUPS</Text>
                     </View>
                 </TouchableHighlight>
-                
+
                 <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Inbox.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>INBOX</Text>
                     </View>
                 </TouchableHighlight>
-            
+
                 <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Profile.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>PROFILE</Text>
                     </View>
@@ -127,6 +138,15 @@ export default class MyPickups extends Component {
         })
     }
 
+    _viewItemDetail = (name) => {
+        this.props.navigator.push({
+            title: 'Item page',
+            name: 'ItemPage'
+            // passProps: {
+            //     name: name
+            // }
+        })
+    }
 }
 
 const styles = StyleSheet.create({

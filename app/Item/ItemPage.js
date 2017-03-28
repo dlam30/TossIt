@@ -16,13 +16,20 @@ export default class ItemPage extends Component {
         return (
             <View style={{flex: 1}}>
             <View style={{flex: 1, flexDirection: 'column'}}>
+                <View>
+                    <Text>Image will be here</Text>
+                    <Text>Item name: { this.props.name }</Text>
+                    <Text></Text>
+                    <Text></Text>
+                </View>
+                {/*}
                 <View style={{flex: 0.4}}>
                     <Image
                         style={{flex: 1}}
                         source={{uri: 'http://sherralifelesson.com/wp-content/uploads/fridge-4.jpg'}}
                     />
                 </View>
-                <View style={{flex: 0.6}}> 
+                <View style={{flex: 0.6}}>
                     <Text style={{fontWeight: 'bold'}}>Heavy Fridge!{"\n"}</Text>
                     <Text>Refrigerator $25</Text>
                     <Text>by TestUser{"\n"}</Text>
@@ -40,13 +47,14 @@ export default class ItemPage extends Component {
                     <Text>Date: 0/29/17</Text>
                     <Text>Time: 6:00PM</Text>
                 </View>
+                */}
             </View>
-            <Button
-                onPress = {this._onPressBack}
-                style = {{height: 30, borderWidth: 1, borderColor: 'limegreen' }}
-                title = 'Go Back'
-                color = 'limegreen'>
-            </Button>
+                <Button
+                    onPress = {this._onPressBack}
+                    style = {{height: 30, borderWidth: 1, borderColor: 'limegreen' }}
+                    title = 'Go Back'
+                    color = 'limegreen'>
+                </Button>
             </View>
 
         )
@@ -55,7 +63,7 @@ export default class ItemPage extends Component {
     _onPressBack = () => {
         this.props.navigator.pop()
     }
-    _onPressPost = () => { 
+    _onPressPost = () => {
         this.props.navigator.push({
             title: 'New Listing cont..',
             name: 'NewListingContinued',
