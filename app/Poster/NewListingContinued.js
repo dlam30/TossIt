@@ -101,11 +101,38 @@ export default class NewListingContinued extends Component {
             weight     : this.props.weight
         }
         //this.refs.db.postItem(username, data);
-        var array = [];
-        alert(this.props.username);
+// <<<<<<< HEAD
+//         var array = [];
+//         alert(this.props.username);
         
+//         this.refs.db.postItem(this.props.username, this.props.item, data);
+//         // alert('Posted!');
+//         this.props.navigator.popN(2);
+// =======
         this.refs.db.postItem(this.props.username, this.props.item, data);
-        // alert('Posted!');
-        this.props.navigator.popN(2);
+        alert('Posted!');
+
+        var array = [];
+        var count = 0;
+        var routes = this.props.navigator.state.routeStack;
+        this.refs.db.getItem(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
+            }
+            for (var i = routes.length - 1; i >= 0; i--) {
+                if (routes[i].name == 'MyListings') {
+                    var destRoute = this.props.navigator.getCurrentRoutes()[i];
+                    destRoute.passProps = {
+                        array: array
+                    }
+                    this.props.navigator.popToRoute(destRoute);
+                }
+            }
+        })
+
     }
 }
