@@ -52,8 +52,8 @@ export default class Route extends Component {
 										    }
 										},
 									  RightButton: (route, navigator, index, navState) =>
-									  { 
-                                        //return null; 
+									  {
+                                        //return null;
                                          return (
 										        <TouchableHighlight onPress={() => navigator.pop()}>
 										          <Text>Forward</Text>
@@ -65,7 +65,7 @@ export default class Route extends Component {
 									}}
 									style={{backgroundColor: 'red', bottom: 0, top: null}}
 									/>
-                                    
+
 						  }*/
             />
         );
@@ -86,29 +86,29 @@ export default class Route extends Component {
             return (
                 <Map
                     navigator = { navigator }
-                    username = { route.username }
-                    // {...route.passProps}
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
-        
+
         if (route.name == 'Register') {
             return (
                 <Register
                     navigator = { navigator }
-                    username = { route.username }
-                    // {...route.passProps}
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
-        
+
         if (route.name == 'MyPickups') {
             // console.log("in Router to MyPickups" + route.username);
             return (
                 <MyPickups
                     navigator = { navigator }
-                    username = { route.username }
-                    // {...route.passProps}
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }
@@ -118,8 +118,8 @@ export default class Route extends Component {
             return (
                 <DemoInbox
                     navigator = { navigator }
-                    username = { route.username }
-                    // {...route.passProps}
+                    // username = { route.username }
+                    {...route.passProps}
                 />
             )
         }

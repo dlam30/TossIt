@@ -70,7 +70,9 @@ export default class LoginScreen extends Component {
                 this.props.navigator.push({
                     title: 'Map',
                     name: 'Map',
-                    username: this.state.username
+                    passProps : {
+                        username: this.state.username                    
+                    }
                 });
             } else {
                 alert(response);

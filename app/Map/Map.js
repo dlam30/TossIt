@@ -18,6 +18,7 @@ import {
   Image,
 } from 'react-native';
 import MapView from 'react-native-maps';
+import ApiHandler from '../API/ApiHandler'
 
 var {height, width} = Dimensions.get('window');
 
@@ -32,7 +33,7 @@ var colors = ['#ddd', '#efefef', 'red', '#666', 'rgba(0,0,0,.1)', '#ededed'];
 var backgroundcolors = ['green', 'black', 'orange', 'blue', 'purple', 'pink'];
 
 export default class TossIt extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,11 +42,11 @@ export default class TossIt extends Component {
                 longitude: LON,
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
-            }    
+            }
         };
         this.onRegionChange = this.onRegionChange.bind(this);
     }
-    
+
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -76,7 +77,8 @@ export default class TossIt extends Component {
     render() {
     return (
         <View style={styles.container}>
-        <MapView 
+        <ApiHandler ref='db'/>
+        <MapView
             style={styles.map}
             mapType="standard"
             showsUserLocation={true}
@@ -96,42 +98,42 @@ export default class TossIt extends Component {
         <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
             <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <Image 
+                    <Image
                         source = {require('../Images/Icons/Search.png')}
-                        style={{width: 25, height: 25}}>               
+                        style={{width: 25, height: 25}}>
                     </Image>
                     <Text style={styles.dockText}>EXLPORE</Text>
                 </View>
             </TouchableHighlight>
-            
+
             <TouchableHighlight onPress={this._onPressDockMyPickups}
                 style = {{flex: 0.25, flexDirection: 'row'}}>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <Image 
+                    <Image
                         source = {require('../Images/Icons/Pickup.png')}
-                        style={{width: 25, height: 25}}>               
+                        style={{width: 25, height: 25}}>
                     </Image>
                     <Text style={styles.dockText}>PICKUPS</Text>
                 </View>
             </TouchableHighlight>
-                
+
             <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
                 style = {{flex: 0.25, flexDirection: 'row'}}>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <Image 
+                    <Image
                         source = {require('../Images/Icons/Inbox.png')}
-                        style={{width: 25, height: 25}}>               
+                        style={{width: 25, height: 25}}>
                     </Image>
                     <Text style={styles.dockText}>INBOX</Text>
                 </View>
             </TouchableHighlight>
-            
+
             <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
                 style = {{flex: 0.25, flexDirection: 'row'}}>
                 <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <Image 
+                    <Image
                         source = {require('../Images/Icons/Profile.png')}
-                        style={{width: 25, height: 25}}>               
+                        style={{width: 25, height: 25}}>
                     </Image>
                     <Text style={styles.dockText}>PROFILE</Text>
                 </View>
@@ -141,19 +143,19 @@ export default class TossIt extends Component {
             <View style={styles.toolbar}>
             <TouchableHighlight onPress={this._onPressBack}>
                 <Image
-                    
+
                     source = {require('../Images/icon.png')}
                     >
-                    
+
                 </Image>
             </TouchableHighlight>
             <TouchableHighlight onPress={this._onPressBack}
                 style = {{paddingTop:7}}>
                 <Image
-  
+
                     source = {require('../Images/icoNavDiscover2Active@2x.png')}
                     >
-                    
+
                 </Image>
             </TouchableHighlight>
             <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
@@ -162,7 +164,7 @@ export default class TossIt extends Component {
                     source = {require('../Images/icoNavMessageNormal@2x.png')}
                     activeOpacity = '50'
                     underlayColor = 'gray'>
-                  
+
                 </Image>
             </TouchableHighlight>
             <Button
@@ -182,7 +184,7 @@ export default class TossIt extends Component {
                     >
                 </Image>
             </TouchableHighlight>
-            
+
         </View>*/}
       </View>
     );
@@ -212,20 +214,37 @@ export default class TossIt extends Component {
         this.props.navigator.pop()
     }
     _onPressPoster = () => {
-        this.props.navigator.push({
-            title: 'My Listings',
-            name: 'MyListings',
-            username: this.state.username
+        var array = [];
+        var count = 0;
+        var routes = this.props.navigator.state.routeStack;
+        this.refs.db.getItem(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
+            }
+            this.props.navigator.push({
+                title: 'My Listings',
+                name: 'MyListings',
+                passProps: {
+                    array: array,
+                    username: this.props.username
+                }
+            })
         })
     }
     _onPressHauler = () => {
         this.props.navigator.push({
             title: 'My Pickups',
             name: 'MyPickups',
-            username: this.state.username
+            passProps: {
+                username: this.props.username
+            }
         })
     }
-    
+
 }
 
 const styles = StyleSheet.create({
