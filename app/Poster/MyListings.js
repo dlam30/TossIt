@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import {
-   View, 
-   Text, 
-   Button, 
-   TextInput, 
-   TouchableHighlight, 
-   StyleSheet, 
-   ScrollView, 
-   AppRegistry, 
-   Dimensions, 
-   StatusBar, 
+   View,
+   Text,
+   Button,
+   TextInput,
+   TouchableHighlight,
+   StyleSheet,
+   ScrollView,
+   AppRegistry,
+   Dimensions,
+   StatusBar,
    Image
 } from 'react-native'
 import ItemList from './ItemList'
+import ApiHandler from '../API/ApiHandler'
 
 var {height, width} = Dimensions.get('window');
 
@@ -26,16 +27,13 @@ export default class MyListings extends Component {
         var array = this.props.array;
         var result = [];
 
-        if (array != null) 
-        {
+        if (array != null) {
             array.forEach((item) => {
-            console.log(item);
-            result.push(<ItemList info={item} key={item.item}/>);
-        });
-        }
-        else 
-        {
-            result.push(<Text style={{fontSize:20}}>You currently do not have any items listed.</Text>);
+                console.log(item);
+                result.push(<ItemList key={item.item} info={item} />);
+            });
+        } else {
+            result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);
         }
         /*array.forEach((item) => {
             console.log(item);
@@ -56,41 +54,41 @@ export default class MyListings extends Component {
                 <TouchableHighlight onPress={this._onPressDockNewListing}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/New Listing.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>NEW</Text>
                     </View>
                 </TouchableHighlight>
-                
+
                 <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Listings.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>LISTINGS</Text>
                     </View>
                 </TouchableHighlight>
-                
+
                 <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Inbox.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>INBOX</Text>
                     </View>
                 </TouchableHighlight>
-                
+
                 <TouchableHighlight onPress={this._onPressHauler} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        <Image 
+                        <Image
                             source = {require('../Images/Icons/Profile.png')}
-                            style={{width: 25, height: 25}}>               
+                            style={{width: 25, height: 25}}>
                         </Image>
                         <Text style={styles.dockText}>PROFILE</Text>
                     </View>
@@ -126,14 +124,14 @@ export default class MyListings extends Component {
     _onRegionChangeComplete(region)
     {
 
-    }   
+    }
 }
 
 const styles = StyleSheet.create({
   dockText: {
     fontSize: 11,
     fontWeight: 'bold'
-  }  
+  }
   /*container: {
     flex: 1,
     justifyContent: 'center',
