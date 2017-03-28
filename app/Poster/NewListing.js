@@ -172,12 +172,37 @@ export default class NewListing extends Component {
             title      : this.state.title,
             weight     : this.state.weight
         }
-        //this.refs.db.postItem(username, data);
-        var array = [];
-        // alert(this.props.username);
-        // alert(this.state.item);
-        this.refs.db.postItem(this.props.username, this.state.item, data);
+        // //this.refs.db.postItem(username, data);
+        // var array = [];
+        // // alert(this.props.username);
+        // // alert(this.state.item);
+        // this.refs.db.postItem(this.props.username, this.state.item, data);
+        // alert('Posted!');
+        // this.props.navigator.popN(2);
+
+        this.refs.db.postItem(this.props.username, this.props.item, data);
         alert('Posted!');
-        this.props.navigator.popN(2);
+
+        var array = [];
+        var count = 0;
+        var routes = this.props.navigator.state.routeStack;
+        this.refs.db.getItem(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
+            }
+            for (var i = routes.length - 1; i >= 0; i--) {
+                if (routes[i].name == 'MyListings') {
+                    var destRoute = this.props.navigator.getCurrentRoutes()[i];
+                    destRoute.passProps = {
+                        array: array
+                    }
+                    this.props.navigator.popToRoute(destRoute);
+                }
+            }
+        })
     }
 }
