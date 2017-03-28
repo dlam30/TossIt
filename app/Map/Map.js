@@ -27,7 +27,11 @@ const LON = -84.3963;
 
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = .0421;
+let id = 0;
 
+function randomColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 var colors = ['#ddd', '#efefef', 'red', '#666', 'rgba(0,0,0,.1)', '#ededed'];
 var backgroundcolors = ['green', 'black', 'orange', 'blue', 'purple', 'pink'];
 
@@ -41,7 +45,8 @@ export default class TossIt extends Component {
                 longitude: LON,
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
-            }    
+            },
+            markers: [],
         };
         this.onRegionChange = this.onRegionChange.bind(this);
     }
@@ -56,6 +61,7 @@ export default class TossIt extends Component {
                         latitudeDelta: LATITUDE_DELTA,
                         longitudeDelta: LONGITUDE_DELTA,
                     }
+                    
                 });
             },
             (error) => this.setState({ error: error.message }),
@@ -65,6 +71,22 @@ export default class TossIt extends Component {
     onRegionChange(region) {
         this.setState({region});
     }
+    
+    onMapPress(e) {
+        this.setState({
+            markers: [
+            ...this.state.markers,
+            {
+                    coordinate: e.nativeEvent.coordinate,
+                    key: id++,
+                    color: randomColor(),
+            },
+            ],
+        });
+    }
+        //})
+    //}
+    /*
      _changeStyle() {
         var color = colors[Math.floor(Math.random()*colors.length)];
         var backgroundColor = backgroundcolors[Math.floor(Math.random()*backgroundcolors.length)];
@@ -73,6 +95,7 @@ export default class TossIt extends Component {
           backgroundColor: backgroundColor
         })
     }
+    */
     render() {
     return (
         <View style={styles.container}>
@@ -85,7 +108,17 @@ export default class TossIt extends Component {
             showsPointofInterest={true}
             region={this.state.region}
             onRegionChange={this.onRegionChange}
+            onPress={(e) => this.onMapPress(e)}
         >
+        {this.state.markers.map(marker => (
+            <MapView.Marker
+                key={marker.key}
+                coordinate={marker.coordinate}
+                pinColor={marker.color}
+                title={(marker.key).toString()}
+                //description={(marker.coordinate)}
+            />
+        ))}
         <MapView.Marker
             coordinate={{latitude: 33.78756, longitude: -84.3963}}
             title="Georgia Institute of Technology"
