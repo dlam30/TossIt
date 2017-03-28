@@ -119,6 +119,7 @@ export default class NewListing extends Component {
                     </ScrollView>
                 </View>
                 <View style={{}}>
+
                     <Button
                         onPress = {this._onPressPost}
                         style = {{height: 30, borderWidth: 1, borderColor: 'gray' }}
@@ -142,6 +143,8 @@ export default class NewListing extends Component {
     }
 
     _onPressCont = () => {
+        alert(this.props.username);
+
         this.props.navigator.push({
             title: 'New Listing cont..',
             name: 'NewListingContinued',

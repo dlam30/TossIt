@@ -102,8 +102,10 @@ export default class NewListingContinued extends Component {
         }
         //this.refs.db.postItem(username, data);
         var array = [];
+        alert(this.props.username);
+        
         this.refs.db.postItem(this.props.username, this.props.item, data);
-        alert('Posted!');
+        // alert('Posted!');
         this.props.navigator.popN(2);
     }
 }
