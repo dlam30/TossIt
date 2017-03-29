@@ -10,7 +10,7 @@ export default class ItemList extends Component {
 
     render () {
         return (
-            <View>
+            <View style={{borderColor: 'gray', borderWidth: 1}}>
                 <Text>Item name: { this.props.info.item }</Text>
                 <Text>Description: { this.props.info.description }</Text>
                 <Text>Payment: { this.props.info.payment }{'\n'}</Text>
