@@ -3,6 +3,7 @@ import {
    View, Text, Button, TextInput, ScrollView
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 export default class NewListing extends Component {
     constructor(props) {
@@ -21,7 +22,6 @@ export default class NewListing extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
-                <ApiHandler ref='db'/>
                 <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
                     <Text style={{fontSize: 18, color: 'gray', fontWeight: 'bold'}}>
                         {this.state.helperText}
@@ -143,24 +143,6 @@ export default class NewListing extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressCont = () => {
-        alert(this.props.username);
-
-        this.props.navigator.push({
-            title: 'New Listing cont..',
-            name: 'NewListingContinued',
-            passProps : {
-                title: this.state.title,
-                item: this.state.item,
-                description: this.state.description,
-                size: this.state.size,
-                weight: this.state.weight,
-                username: this.props.username
-            }
-            // username: this.state.username
-        })
-    }
-
     _onPressPost = () => {
         var data = {
             description: this.state.description,
@@ -173,37 +155,30 @@ export default class NewListing extends Component {
             title      : this.state.title,
             weight     : this.state.weight
         }
-        // //this.refs.db.postItem(username, data);
-        // var array = [];
-        // // alert(this.props.username);
-        // // alert(this.state.item);
-        // this.refs.db.postItem(this.props.username, this.state.item, data);
-        // alert('Posted!');
-        // this.props.navigator.popN(2);
 
-        this.refs.db.postItem(this.props.username, this.props.item, data);
+        app.postItem(this.props.username, this.state.item, data);
         alert('Posted!');
-
-        var array = [];
-        var count = 0;
-        var routes = this.props.navigator.state.routeStack;
-        this.refs.db.getItem(this.props.username, (response) => {
-            for (var key in response) {
-                if (response.hasOwnProperty(key)) {
-                    var obj = response[key];
-                    array[count] = obj;
-                    count++;
-                }
-            }
-            for (var i = routes.length - 1; i >= 0; i--) {
-                if (routes[i].name == 'MyListings') {
-                    var destRoute = this.props.navigator.getCurrentRoutes()[i];
-                    destRoute.passProps = {
-                        array: array
-                    }
-                    this.props.navigator.popToRoute(destRoute);
-                }
-            }
-        })
+        this.props.navigator.pop();
+        // var array = [];
+        // var count = 0;
+        // var routes = this.props.navigator.state.routeStack;
+        // app.getItem(this.props.username, (response) => {
+        //     for (var key in response) {
+        //         if (response.hasOwnProperty(key)) {
+        //             var obj = response[key];
+        //             array[count] = obj;
+        //             count++;
+        //         }
+        //     }
+        //     for (var i = routes.length - 1; i >= 0; i--) {
+        //         if (routes[i].name == 'MyListings') {
+        //             var destRoute = this.props.navigator.getCurrentRoutes()[i];
+        //             destRoute.passProps = {
+        //                 array: array
+        //             }
+        //             this.props.navigator.popToRoute(destRoute);
+        //         }
+        //     }
+        // })
     }
 }

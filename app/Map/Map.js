@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 var {height, width} = Dimensions.get('window');
 
@@ -100,7 +101,6 @@ export default class TossIt extends Component {
     render() {
     return (
         <View style={styles.container}>
-        <ApiHandler ref='db'/>
         <MapView
             style={styles.map}
             mapType="standard"
@@ -224,25 +224,12 @@ export default class TossIt extends Component {
     }
 
     _onPressDockMyPickups = () => {
-        var array = [];
-        var count = 0;
-        this.refs.db.getPickUpList(this.props.username, (response) => {
-            for (var key in response) {
-                if (response.hasOwnProperty(key)) {
-                    var obj = response[key];
-                    array[count] = obj;
-                    count++;
-                }
+        this.props.navigator.push({
+            title: 'My Pickups',
+            name: 'MyPickups',
+            passProps: {
+                username: this.props.username
             }
-            console.log(array);
-            this.props.navigator.push({
-                title: 'My Pickups',
-                name: 'MyPickups',
-                passProps: {
-                    array: array,
-                    username: this.props.username
-                }
-            })
         })
     }
 
@@ -259,25 +246,14 @@ export default class TossIt extends Component {
      _onPressBack = () => {
         this.props.navigator.pop()
     }
+
     _onPressPoster = () => {
-        var array = [];
-        var count = 0;
-        this.refs.db.getItem(this.props.username, (response) => {
-            for (var key in response) {
-                if (response.hasOwnProperty(key)) {
-                    var obj = response[key];
-                    array[count] = obj;
-                    count++;
-                }
+        this.props.navigator.push({
+            title: 'My Listings',
+            name: 'MyListings',
+            passProps: {
+                username: this.props.username
             }
-            this.props.navigator.push({
-                title: 'My Listings',
-                name: 'MyListings',
-                passProps: {
-                    array: array,
-                    username: this.props.username
-                }
-            })
         })
     }
 

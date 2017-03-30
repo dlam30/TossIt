@@ -4,6 +4,7 @@ import {
    Dimensions, Button, StatusBar
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 var {height, width} = Dimensions.get('window');
 
@@ -21,7 +22,6 @@ export default class LoginScreen extends Component {
         return (
             //<Image source = {require('../Images/ST.jpg')}
             <View style = {styles.container}>
-                <ApiHandler ref="db"/>
                 <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
 
@@ -86,6 +86,13 @@ export default class LoginScreen extends Component {
                     title = 'Create Account'
                     color = 'transparent'>
                 </Button>
+                <Button
+                    onPress = {this._isPressLogin}
+                    style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
+                    title = 'Cancel'
+                    color = 'transparent'>
+                </Button>
+                {/*
                 <Text
                     onPress = {this._isPressLogin}
                     style = {{height: 30, textDecorationLine: 'underline', paddingTop:10,
@@ -100,6 +107,7 @@ export default class LoginScreen extends Component {
                         Touchable Back
                     </Text>
                 </TouchableHighlight>
+                */}
 
             </View>
         )
@@ -114,7 +122,7 @@ export default class LoginScreen extends Component {
                 email: this.state.email,
                 phone: this.state.phone
             }
-            this.refs.db.createNewUser(this.state.username.toLowerCase(),
+            app.createNewUser(this.state.username.toLowerCase(),
                     info, this.state.password, (response, success) => {
                 alert(response);
                 if (success) this._isPressLogin();
@@ -127,14 +135,6 @@ export default class LoginScreen extends Component {
             title: 'Login',
             name: 'Login',
         })
-    }
-    _isPressMap = () => {
-        this.props.navigator.push({
-            title: 'Map',
-            name: 'Map',
-            username: this.state.username
-        })
-
     }
 }
 const styles = StyleSheet.create({

@@ -14,31 +14,35 @@ import {
 } from 'react-native'
 import ItemList from './ItemList'
 import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 var {height, width} = Dimensions.get('window');
 
 export default class MyListings extends Component {
+
     constructor(props) {
         super(props);
+        this.state = {
+            array: []
+        }
     }
 
-    //<ItemList info={ this.props.array[0] }/>
     render() {
-        var array = this.props.array;
-        var result = [];
+        this.updateItemList((response) => {
+            this.setState({ array: response });
+        });
 
-        if (array != null) {
+        var result = [];
+        var array = this.state.array;
+
+        if (array.length > 0) {
             array.forEach((item) => {
-                console.log(item);
                 result.push(<ItemList key={item.item} info={item} />);
             });
         } else {
             result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);
         }
-        /*array.forEach((item) => {
-            console.log(item);
-            result.push(<ItemList info={item} key={item.item}/>);
-        });*/
+
         return (
             <View style={{flex: 1}}>
             <View style={{flex: 0.92}}>
@@ -72,7 +76,7 @@ export default class MyListings extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
+                <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image
@@ -108,6 +112,16 @@ export default class MyListings extends Component {
         })
     }
 
+    _onPressDockInbox = () => {
+        this.props.navigator.push({
+            title: 'Inbox',
+            name: 'DemoInbox',
+            passProps: {
+                username: this.props.username
+            }
+        })
+    }
+
     _onPressBack = () => {
         this.props.navigator.pop()
     }
@@ -121,6 +135,22 @@ export default class MyListings extends Component {
             }
         })
     }
+
+    updateItemList = (callback) => {
+        var array = [];
+        var count = 0;
+        app.getItem(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
+            }
+            callback(array);
+        })
+    }
+
     _onRegionChangeComplete(region)
     {
 

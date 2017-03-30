@@ -13,18 +13,26 @@ import {
    Image
 } from 'react-native'
 import ItemList from '../Poster/ItemList'
+import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 export default class MyPickups extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            array: []
+        }
     }
     render() {
-        var array = this.props.array;
-        var result = [];
+        this.updateItemList((response) => {
+            this.setState({ array: response });
+        });
 
-        if (array != null) {
+        var result = [];
+        var array = this.state.array;
+
+        if (array.length > 0) {
             array.forEach((item) => {
-                console.log(item);
                 result.push(<ItemList key={item.item} info={item} />);
             });
         } else {
@@ -145,6 +153,21 @@ export default class MyPickups extends Component {
             // passProps: {
             //     name: name
             // }
+        })
+    }
+
+    updateItemList = (callback) => {
+        var array = [];
+        var count = 0;
+        app.getPickUpList(this.props.username, (response) => {
+            for (var key in response) {
+                if (response.hasOwnProperty(key)) {
+                    var obj = response[key];
+                    array[count] = obj;
+                    count++;
+                }
+            }
+            callback(array);
         })
     }
 }

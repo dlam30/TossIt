@@ -4,6 +4,7 @@ import {
    Dimensions, Button, StatusBar
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 
 var {height, width} = Dimensions.get('window');
 
@@ -17,7 +18,6 @@ export default class LoginScreen extends Component {
         return (
             //<Image source = {require('../Images/ST.jpg')}
             <View style = {styles.container}>
-                <ApiHandler ref="db"/>
                 <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
 
@@ -60,18 +60,18 @@ export default class LoginScreen extends Component {
     }
 
     _isPressLogin = () => {
-        // Validation
+        //Validation
         var info = {
             username: this.state.username.toLowerCase(),
             password: this.state.password
         }
-        this.refs.db.validation(info, (response, success) => {
+        app.validation(info, (response, success) => {
             if (success) {
                 this.props.navigator.push({
                     title: 'Map',
                     name: 'Map',
                     passProps : {
-                        username: this.state.username                    
+                        username: this.state.username
                     }
                 });
             } else {
@@ -83,7 +83,6 @@ export default class LoginScreen extends Component {
         this.props.navigator.push({
             title: 'Register',
             name: 'Register',
-            //username: this.state.username
         })
     }
 }

@@ -4,14 +4,12 @@
  *
  * This is an API class for RESTful API purpose
  *
- * @version 0.1
+ * @version 2.0
  * @author  Diem Lam
  * @updated 2017-03-06
  *
  */
 
-import React, { Component } from 'react'
-import {View} from 'react-native'
 import * as firebase from 'firebase'
 
 // Initialize Firebase
@@ -25,17 +23,7 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 db = firebaseApp.database();
 const URL = 'https://goingmerry-53c7c.firebaseio.com';
 
-export default class ApiHandler extends Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return (
-            <View></View>
-        )
-    }
-
+export default class ApiHandler {
     // Debug purpose
     printMe() {
         alert('debug');
