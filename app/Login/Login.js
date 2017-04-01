@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
+import Sha256 from '../SHA'
 
 var {height, width} = Dimensions.get('window');
 
@@ -61,9 +62,11 @@ export default class LoginScreen extends Component {
 
     _isPressLogin = () => {
         //Validation
+        var encryptedUsername = Sha256.hash(this.state.username.toLowerCase());
+        var encryptedPassword = Sha256.hash(this.state.password);
         var info = {
-            username: this.state.username.toLowerCase(),
-            password: this.state.password
+            username: encryptedUsername,
+            password: encryptedPassword
         }
         app.validation(info, (response, success) => {
             if (success) {
@@ -71,7 +74,7 @@ export default class LoginScreen extends Component {
                     title: 'Map',
                     name: 'Map',
                     passProps : {
-                        username: this.state.username
+                        username: encryptedUsername
                     }
                 });
             } else {

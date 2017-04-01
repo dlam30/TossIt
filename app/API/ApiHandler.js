@@ -36,7 +36,7 @@ export default class ApiHandler {
         var _url = 'users/' + username;
         db.ref(_url).once('value', (snapshot) => {
             if (snapshot.val()) {
-                callback('This user already exists', false);
+                callback(false);
             } else {
                 db.ref(_url).set({
                     name: info.name,
@@ -45,7 +45,7 @@ export default class ApiHandler {
                     phone_number: info.phone,
                     post_list: ''
                 });
-                callback('User ' + username + ' successfully created.', true);
+                callback(true);
             }
         });
     }

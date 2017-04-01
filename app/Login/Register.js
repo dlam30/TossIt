@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
+import Sha256 from '../SHA'
 
 var {height, width} = Dimensions.get('window');
 
@@ -114,20 +115,37 @@ export default class LoginScreen extends Component {
     }
 
     _createUser = () => {
-        if (this.state.password != this.state.verifyPassword) {
-            alert('Password mismatch !!\nPlease check.');
-        } else {
-            var info = {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone
+        // Submit the form after all the fields are filled
+        if (this.checkMissingFields()) {
+            if (this.state.password != this.state.verifyPassword) {
+                alert('Password mismatch !!\nPlease check.');
+            } else {
+                var info = {
+                    name: this.state.name,
+                    email: this.state.email,
+                    phone: this.state.phone
+                }
+                var encryptedUsername = Sha256.hash(this.state.username.toLowerCase());
+                var encryptedPassword = Sha256.hash(this.state.password);
+                app.createNewUser(encryptedUsername, info, encryptedPassword, (success) => {
+                    if (success) {
+                        alert('Success!')
+                        this._isPressLogin();
+                    } else {
+                        alert('This username is already registered.\nPlease choose another name.');
+                    }
+                });
             }
-            app.createNewUser(this.state.username.toLowerCase(),
-                    info, this.state.password, (response, success) => {
-                alert(response);
-                if (success) this._isPressLogin();
-            });
         }
+    }
+
+    checkMissingFields = () => {
+        if (this.state.username == '' || this.state.password == '' || this.state.verifyPassword == '' ||
+            this.state.email == '' || this.state.phone == '') {
+                alert('Some fields are missing.\nPlease complete the form.');
+                return false;
+            }
+        return true;
     }
 
     _isPressLogin = () => {
