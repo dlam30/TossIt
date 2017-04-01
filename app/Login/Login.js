@@ -5,6 +5,8 @@ import {
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
+import Sha256 from '../SHA'
+// var sha = new Sha256();
 
 var {height, width} = Dimensions.get('window');
 
@@ -27,7 +29,7 @@ export default class LoginScreen extends Component {
                 <TextInput
                     style = {{ height: 40, width: width, borderBottomColor: 'gray', borderBottomWidth: 1,}}
                     underlineColorAndroid = 'rgba(0,0,0,0)'
-                    onChangeText = {(text) => this.setState({ username: text })}
+                    onChangeText = {(text) => this.setState({ username: text.toLowerCase() })}
                     placeholder = 'Username'
                     value = { this.state.username }
                 />
@@ -62,8 +64,8 @@ export default class LoginScreen extends Component {
     _isPressLogin = () => {
         //Validation
         var info = {
-            username: this.state.username.toLowerCase(),
-            password: this.state.password
+            username: this.state.username,
+            password: Sha256.hash(this.state.password)
         }
         app.validation(info, (response, success) => {
             if (success) {

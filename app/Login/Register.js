@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
+import Sha256 from '../SHA'
 
 var {height, width} = Dimensions.get('window');
 
@@ -122,8 +123,9 @@ export default class LoginScreen extends Component {
                 email: this.state.email,
                 phone: this.state.phone
             }
-            app.createNewUser(this.state.username.toLowerCase(),
-                    info, this.state.password, (response, success) => {
+            var username = this.state.username.toLowerCase();
+            var password = Sha256.hash(this.state.password);
+            app.createNewUser(username, info, password, (response, success) => {
                 alert(response);
                 if (success) this._isPressLogin();
             });
