@@ -21,7 +21,7 @@ export default class LoginScreen extends Component {
                 <Image source = {require('../Images/logo@3x.png')}>
                 </Image>
 
-                <Text style = {{color: 'white', fontFamily: 'sans-serif-medium', paddingTop: 56}}>
+                <Text style = {{color: 'white', paddingTop: 56}}>
                     Pick up with TossIt
                 </Text>
                 <TextInput
@@ -52,7 +52,7 @@ export default class LoginScreen extends Component {
                 <Text
                     onPress = {this._isPressRegister}
                     style = {{height: 30, textDecorationLine: 'underline', paddingTop:10,
-                            color: 'white', fontFamily: 'sans-serif-medium'}}>
+                            color: 'white'}}>
                     Create Account
                 </Text>
             </View>

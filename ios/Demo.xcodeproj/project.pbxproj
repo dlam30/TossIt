@@ -215,7 +215,7 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
-		64D996671E8C8873001980A1 /* PBXContainerItemProxy */ = {
+		64D817181E90387B006287BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6F494EE4F57E4117B216AB99 /* AirMaps.xcodeproj */;
 			proxyType = 2;
@@ -435,10 +435,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		64D996641E8C8873001980A1 /* Products */ = {
+		64D817151E90387A006287BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64D996681E8C8873001980A1 /* libAirMaps.a */,
+				64D817191E90387B006287BF /* libAirMaps.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 64D996641E8C8873001980A1 /* Products */;
+					ProductGroup = 64D817151E90387A006287BF /* Products */;
 					ProjectRef = 6F494EE4F57E4117B216AB99 /* AirMaps.xcodeproj */;
 				},
 				{
@@ -835,11 +835,11 @@
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		64D996681E8C8873001980A1 /* libAirMaps.a */ = {
+		64D817191E90387B006287BF /* libAirMaps.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAirMaps.a;
-			remoteRef = 64D996671E8C8873001980A1 /* PBXContainerItemProxy */;
+			remoteRef = 64D817181E90387B006287BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
