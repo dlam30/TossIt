@@ -97,8 +97,8 @@ export default class ApiHandler {
     /**
      * A function to post a new item
      */
-    postItem = (username, item, data) => {
-        var _url = 'users/' + username + '/post_list/' + item;
-        db.ref(_url).set(data);
+    postItem = (username, data) => {
+        var _url = 'users/' + username + '/post_list/';
+        db.ref(_url).push(data);
     }
 }

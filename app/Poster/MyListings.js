@@ -36,8 +36,10 @@ export default class MyListings extends Component {
         var array = this.state.array;
 
         if (array.length > 0) {
+            var count = 0;
             array.forEach((item) => {
-                result.push(<ItemList key={item.item} info={item} />);
+                result.push(<ItemList key={count} info={item} />);
+                count++;
             });
         } else {
             result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);

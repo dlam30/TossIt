@@ -71,8 +71,8 @@ export default class LoginScreen extends Component {
         app.validation(info, (response, success) => {
             if (success) {
                 this.props.navigator.push({
-                    title: 'Map',
-                    name: 'Map',
+                    title: 'MyListings',
+                    name: 'MyListings',
                     passProps : {
                         username: encryptedUsername
                     }
