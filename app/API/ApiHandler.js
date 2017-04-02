@@ -22,6 +22,8 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 db = firebaseApp.database();
 const URL = 'https://goingmerry-53c7c.firebaseio.com';
+const API_KEY = 'AIzaSyA1JOiFJQN7Z-fHLRkepmR1xBv3ubFiLHI';
+const PATH = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 
 export default class ApiHandler {
     // Debug purpose
@@ -100,5 +102,41 @@ export default class ApiHandler {
     postItem = (username, data) => {
         var _url = 'users/' + username + '/post_list/';
         db.ref(_url).push(data);
+    }
+
+    /**
+     * A function to get geo location from an address
+     */
+    getLocation = (address, callback) => {
+        var converted = this.convertSpace(address);
+        var _url = PATH + converted + '&key=' + API_KEY;
+        fetch(_url)
+            .then((data) => {
+                return data.json();
+            })
+            .then((response) => {
+                alert('success');
+                var result = response.results[0].geometry.location;
+                // console.log(result);
+                callback(result);
+            })
+    }
+
+    /**
+     * A function to convert space to equal sign
+     */
+    convertSpace = (str) => {
+        var result = '';
+        for (var i = 0; i < str.length; i++) {
+            result += (str.charAt(i) == ' ') ? '+' : str.charAt(i);
+        }
+        return result;
+    }
+
+    /**
+     * A function that get list of markers
+     */
+    retrievePins = (city) => {
+
     }
 }

@@ -15,6 +15,10 @@ export default class NewListing extends Component {
                         size: '',
                         weight: '',
                         location: '',
+                        address: '',
+                        city: '',
+                        state: '',
+                        zipcode: '',
                         pickupDate: '',
                         time: '',
                         payment: '',
@@ -157,10 +161,15 @@ export default class NewListing extends Component {
     }
 
     _onPressPost = () => {
+        var splitAddress = this.state.location.split(',');
+        var splitState = this.removeSpaces(splitAddress[2]).split(' ');
         var data = {
             description: this.state.description,
             name       : this.state.item,
-            location   : this.state.location,
+            address    : this.removeSpaces(splitAddress[0]),
+            city       : this.removeSpaces(splitAddress[1]),
+            state      : this.removeSpaces(splitState[0]),
+            zipcode    : this.removeSpaces(splitState[1]),
             payment    : this.state.payment,
             // pickupDate : this.state.pickupDate,
             size       : this.state.size,
@@ -194,6 +203,17 @@ export default class NewListing extends Component {
         //         }
         //     }
         // })
+    }
+
+    // A function to remove spaces at head and tail of a string
+    removeSpaces = (str) => {
+        var result = '';
+        for (var i = 0; i < str.length; i++) {
+            if (i != 0 && i != str.length - 1) result += str.charAt(i);
+            if (i == 0 && str.charAt(i) != ' ') result += str.charAt(i);
+            if (i == str.length - 1 && str.charAt(i) != ' ') result += str.charAt(i)
+        }
+        return result;
     }
 }
 
