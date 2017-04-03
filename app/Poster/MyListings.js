@@ -104,7 +104,7 @@ export default class MyListings extends Component {
         );
     }
 
-    _onPressDockNewListing = () => {
+    _onPressDockNewListing = () => { //FIXME: this is push right now because newlisting currently does not have a nav bar, only a back button that pops. This should probably be changed to make it more consistent
         this.props.navigator.push({
             title: 'New Listing',
             name: 'NewListing',
@@ -115,7 +115,7 @@ export default class MyListings extends Component {
     }
 
     _onPressDockInbox = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',
             passProps: {
@@ -128,8 +128,8 @@ export default class MyListings extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressHauler = () => {
-        this.props.navigator.push({
+    _onPressHauler = () => { // FIXME: Replace with Profile
+        this.props.navigator.replace({
             title: 'Map',
             name: 'Map',
             passProps: {

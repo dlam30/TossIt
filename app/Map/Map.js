@@ -253,7 +253,7 @@ export default class TossIt extends Component {
     }
 
     _onPressDockMyPickups = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'My Pickups',
             name: 'MyPickups',
             passProps: {
@@ -263,7 +263,7 @@ export default class TossIt extends Component {
     }
 
     _onPressDockInbox = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',
             passProps: {
@@ -276,8 +276,8 @@ export default class TossIt extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressPoster = () => {
-        this.props.navigator.push({
+    _onPressPoster = () => { //FIXME: change to profile page?
+        this.props.navigator.replace({
             title: 'My Listings',
             name: 'MyListings',
             passProps: {
@@ -286,8 +286,8 @@ export default class TossIt extends Component {
         })
     }
 
-    _onPressHauler = () => {
-        this.props.navigator.push({
+    _onPressHauler = () => { //FIXME: DO we need this? there is a dock button for pickups already
+        this.props.navigator.replace({
             title: 'My Pickups',
             name: 'MyPickups',
             passProps: {
