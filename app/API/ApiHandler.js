@@ -137,6 +137,12 @@ export default class ApiHandler {
      * A function that get list of markers
      */
     retrievePins = (city) => {
-
+        var result = [];
+        var _url = 'users/';
+        db.ref(_url).once('value', (snapshot) => {
+            snapshot.forEach((user) => {
+                
+            })
+        })
     }
 }
