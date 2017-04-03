@@ -17,6 +17,7 @@ import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
 
 var {height, width} = Dimensions.get('window');
+var isLoaded = true;
 
 export default class MyListings extends Component {
 
@@ -27,11 +28,16 @@ export default class MyListings extends Component {
         }
     }
 
-    render() {
-        this.updateItemList((response) => {
-            this.setState({ array: response });
-        });
+    componentWillMount() {
+        isLoaded = true;
+        this.updateItemList();
+    }
 
+    componentWillUpdate() {
+        this.updateItemList();
+    }
+
+    render() {
         var result = [];
         var array = this.state.array;
 
@@ -129,6 +135,7 @@ export default class MyListings extends Component {
     }
 
     _onPressHauler = () => { // FIXME: Replace with Profile
+        isLoaded = false;
         this.props.navigator.replace({
             title: 'Map',
             name: 'Map',
@@ -149,7 +156,11 @@ export default class MyListings extends Component {
                     count++;
                 }
             }
-            callback(array);
+            if (array !== undefined || this.state.array != array) {
+                if (isLoaded) {
+                    this.setState({ array: array });
+                }
+            }
         })
     }
 
