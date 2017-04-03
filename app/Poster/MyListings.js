@@ -105,7 +105,7 @@ export default class MyListings extends Component {
     }
 
     _onPressDockNewListing = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'New Listing',
             name: 'NewListing',
             passProps: {
@@ -115,7 +115,7 @@ export default class MyListings extends Component {
     }
 
     _onPressDockInbox = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',
             passProps: {
@@ -128,8 +128,8 @@ export default class MyListings extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressHauler = () => {
-        this.props.navigator.push({
+    _onPressHauler = () => { // FIXME: Replace with Profile
+        this.props.navigator.replace({
             title: 'Map',
             name: 'Map',
             passProps: {

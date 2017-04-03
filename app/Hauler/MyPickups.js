@@ -106,7 +106,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressDockExplore = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Exlpore',
             name: 'Map',
             passProps: {
@@ -116,7 +116,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressDockInbox = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',
             passProps: {
@@ -129,8 +129,8 @@ export default class MyPickups extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressPoster = () => {
-        this.props.navigator.push({
+    _onPressPoster = () => { //FIXME: Replace with profile page
+        this.props.navigator.replace({
             title: 'My Listings',
             name: 'MyListings',
             passProps: {

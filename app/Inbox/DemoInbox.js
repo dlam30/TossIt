@@ -81,7 +81,7 @@ export default class DemoInbox extends Component {
     }
 
     _onPressDockExplore = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'Exlpore',
             name: 'Map',
             passProps: {
@@ -91,7 +91,7 @@ export default class DemoInbox extends Component {
     }
 
     _onPressDockMyPickups = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'My Pickups',
             name: 'MyPickups',
             passProps: {
@@ -105,7 +105,7 @@ export default class DemoInbox extends Component {
     }
 
     _onPressPoster = () => {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             title: 'My Listings',
             name: 'MyListings',
             passProps: {
