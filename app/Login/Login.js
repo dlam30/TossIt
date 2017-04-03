@@ -14,10 +14,6 @@ export default class LoginScreen extends Component {
         super(props);
         this.state = {username: '',
                       password: ''}
-        // var url = '750 Ferst Dr NW, Atlanta, GA 30318';
-        // var split = url.split(',');
-        // var sp = split[2].split(' ');
-        // console.log(split + ' ' + sp);
     }
 
     render() {

@@ -75,16 +75,16 @@ export default class TossIt extends Component {
     }
 
     onMapPress(e) {
-        this.setState({
-            markers: [
-            ...this.state.markers,
-            {
-                    coordinate: e.nativeEvent.coordinate,
-                    key: id++,
-                    color: randomColor(),
-            },
-            ],
-        });
+        // this.setState({
+        //     markers: [
+        //     ...this.state.markers,
+        //     {
+        //             coordinate: e.nativeEvent.coordinate,
+        //             key: id++,
+        //             color: randomColor(),
+        //     },
+        //     ],
+        // });
     }
         //})
     //}
@@ -98,129 +98,158 @@ export default class TossIt extends Component {
         })
     }
     */
+
+    // componentWillMount = () => {
+
+    // }
+
     render() {
-    return (
-        <View style={styles.container}>
-        <MapView
-            style={styles.map}
-            mapType="standard"
-            showsUserLocation={true}
-            followsUseLocation={true}
-            showsCompass={true}
-            showsPointofInterest={true}
-            region={this.state.region}
-            onRegionChange={this.onRegionChange}
-            onPress={(e) => this.onMapPress(e)}
-        >
-        {this.state.markers.map(marker => (
+        this._getMarkerList((response) => {
+            console.log(response);
+            // this.setState({ markers: response });
+        });
+        return (
+            <View style={styles.container}>
+            <MapView
+                style={styles.map}
+                mapType="standard"
+                showsUserLocation={true}
+                followsUseLocation={true}
+                showsCompass={true}
+                showsPointofInterest={true}
+                region={this.state.region}
+                onRegionChange={this.onRegionChange}
+                onPress={(e) => this.onMapPress(e)}
+            >
+            {this.state.markers.map(marker => (
+                <MapView.Marker
+                    key={marker.key}
+                    coordinate={marker.coordinate}
+                    pinColor={marker.color}
+                    title={(marker.key).toString()}
+                    //description={(marker.coordinate)}
+                />
+            ))}
             <MapView.Marker
-                key={marker.key}
-                coordinate={marker.coordinate}
-                pinColor={marker.color}
-                title={(marker.key).toString()}
-                //description={(marker.coordinate)}
+                coordinate={{latitude: 33.78756, longitude: -84.3963}}
+                title="Georgia Institute of Technology"
+                description="A very good STEM school."
             />
-        ))}
-        <MapView.Marker
-            coordinate={{latitude: 33.78756, longitude: -84.3963}}
-            title="Georgia Institute of Technology"
-            description="A very good STEM school."
-        />
-        </MapView>
+            </MapView>
 
-        <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
-            <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
-                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
+                <TouchableHighlight style = {{flex: 0.25, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        <Image
+                            source = {require('../Images/Icons/Search.png')}
+                            style={{width: 25, height: 25}}>
+                        </Image>
+                        <Text style={styles.dockText}>EXLPORE</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={this._onPressDockMyPickups}
+                    style = {{flex: 0.25, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        <Image
+                            source = {require('../Images/Icons/Pickup.png')}
+                            style={{width: 25, height: 25}}>
+                        </Image>
+                        <Text style={styles.dockText}>PICKUPS</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
+                    style = {{flex: 0.25, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        <Image
+                            source = {require('../Images/Icons/Inbox.png')}
+                            style={{width: 25, height: 25}}>
+                        </Image>
+                        <Text style={styles.dockText}>INBOX</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
+                    style = {{flex: 0.25, flexDirection: 'row'}}>
+                    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        <Image
+                            source = {require('../Images/Icons/Profile.png')}
+                            style={{width: 25, height: 25}}>
+                        </Image>
+                        <Text style={styles.dockText}>PROFILE</Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
+            {/* THI's ORIGINAL TOOLBAR ---------
+                <View style={styles.toolbar}>
+                <TouchableHighlight onPress={this._onPressBack}>
                     <Image
-                        source = {require('../Images/Icons/Search.png')}
-                        style={{width: 25, height: 25}}>
-                    </Image>
-                    <Text style={styles.dockText}>EXLPORE</Text>
-                </View>
-            </TouchableHighlight>
 
-            <TouchableHighlight onPress={this._onPressDockMyPickups}
-                style = {{flex: 0.25, flexDirection: 'row'}}>
-                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        source = {require('../Images/icon.png')}
+                        >
+
+                    </Image>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this._onPressBack}
+                    style = {{paddingTop:7}}>
                     <Image
-                        source = {require('../Images/Icons/Pickup.png')}
-                        style={{width: 25, height: 25}}>
-                    </Image>
-                    <Text style={styles.dockText}>PICKUPS</Text>
-                </View>
-            </TouchableHighlight>
 
-            <TouchableHighlight onPress={this._onPressDockInbox} underlayColor = 'gray'
-                style = {{flex: 0.25, flexDirection: 'row'}}>
-                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        source = {require('../Images/icoNavDiscover2Active@2x.png')}
+                        >
+
+                    </Image>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
+                    style = {{paddingTop:7}}>
                     <Image
-                        source = {require('../Images/Icons/Inbox.png')}
-                        style={{width: 25, height: 25}}>
-                    </Image>
-                    <Text style={styles.dockText}>INBOX</Text>
-                </View>
-            </TouchableHighlight>
+                        source = {require('../Images/icoNavMessageNormal@2x.png')}
+                        activeOpacity = '50'
+                        underlayColor = 'gray'>
 
-            <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
-                style = {{flex: 0.25, flexDirection: 'row'}}>
-                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    </Image>
+                </TouchableHighlight>
+                <Button
+                    onPress={this._onPressPoster}
+                    style = {styles.toolbarButton}
+                    title = "Poster">
+                </Button>
+                <Button
+                    onPress={this._onPressHauler}
+                    style = {styles.toolbarButton}
+                    title = "Hauler">
+                </Button>
+                <TouchableHighlight onPress={this._onPressBack} underlayColor = {'gray'} activeOpacity = {50}
+                    style = {{paddingTop:7}}>
                     <Image
-                        source = {require('../Images/Icons/Profile.png')}
-                        style={{width: 25, height: 25}}>
+                        source = {require('../Images/iconNavHomeNormal@2x.png')}
+                        >
                     </Image>
-                    <Text style={styles.dockText}>PROFILE</Text>
-                </View>
-            </TouchableHighlight>
-        </View>
-        {/* THI's ORIGINAL TOOLBAR ---------
-            <View style={styles.toolbar}>
-            <TouchableHighlight onPress={this._onPressBack}>
-                <Image
+                </TouchableHighlight>
 
-                    source = {require('../Images/icon.png')}
-                    >
+            </View>*/}
+          </View>
+        );
+    }
 
-                </Image>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this._onPressBack}
-                style = {{paddingTop:7}}>
-                <Image
-
-                    source = {require('../Images/icoNavDiscover2Active@2x.png')}
-                    >
-
-                </Image>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this._onPressBack} underlayColor = 'gray'
-                style = {{paddingTop:7}}>
-                <Image
-                    source = {require('../Images/icoNavMessageNormal@2x.png')}
-                    activeOpacity = '50'
-                    underlayColor = 'gray'>
-
-                </Image>
-            </TouchableHighlight>
-            <Button
-                onPress={this._onPressPoster}
-                style = {styles.toolbarButton}
-                title = "Poster">
-            </Button>
-            <Button
-                onPress={this._onPressHauler}
-                style = {styles.toolbarButton}
-                title = "Hauler">
-            </Button>
-            <TouchableHighlight onPress={this._onPressBack} underlayColor = {'gray'} activeOpacity = {50}
-                style = {{paddingTop:7}}>
-                <Image
-                    source = {require('../Images/iconNavHomeNormal@2x.png')}
-                    >
-                </Image>
-            </TouchableHighlight>
-
-        </View>*/}
-      </View>
-    );
+    _getMarkerList = (callback) => {
+        app.retrievePins('Atlanta', '', (response) => {
+            var result = [];
+            response.forEach((item) => {
+                var address = item.item.address + ', ' + item.item.city + ', ' + item.item.state + ' ' + item.item.zipcode;
+                app.getLocation(address, (response) => {
+                    console.log('here ' + response);
+                    var location = {
+                        latitude: response.lat,
+                        longitude: response.long
+                    }
+                    result.push({
+                        coordinate: location
+                    })
+                });
+            });
+            callback(result);
+        });
     }
 
     _onPressDockMyPickups = () => {

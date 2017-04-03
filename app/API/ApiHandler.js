@@ -4,9 +4,9 @@
  *
  * This is an API class for RESTful API purpose
  *
- * @version 2.0
+ * @version 3.0
  * @author  Diem Lam
- * @updated 2017-03-06
+ * @updated 2017-04-02
  *
  */
 
@@ -44,8 +44,7 @@ export default class ApiHandler {
                     name: info.name,
                     password: password,
                     email: info.email,
-                    phone_number: info.phone,
-                    post_list: ''
+                    phone_number: info.phone
                 });
                 callback(true);
             }
@@ -115,9 +114,7 @@ export default class ApiHandler {
                 return data.json();
             })
             .then((response) => {
-                alert('success');
                 var result = response.results[0].geometry.location;
-                // console.log(result);
                 callback(result);
             })
     }
@@ -134,15 +131,29 @@ export default class ApiHandler {
     }
 
     /**
-     * A function that get list of markers
+     * A function that get list of items
      */
-    retrievePins = (city) => {
+    retrievePins = (city, state, callback) => {
         var result = [];
         var _url = 'users/';
         db.ref(_url).once('value', (snapshot) => {
             snapshot.forEach((user) => {
-                
+                var data = user.val();
+                // user has posted items
+                if (data.post_list !== undefined) {
+                    for (var item in data.post_list) {
+                        if (data.post_list.hasOwnProperty(item)) {
+                            if (data.post_list[item].city == city) {
+                                result.push({
+                                    item: data.post_list[item],
+                                    user: user.key
+                                });
+                            }
+                        }
+                    }
+                }
             })
+            callback(result);
         })
     }
 }
