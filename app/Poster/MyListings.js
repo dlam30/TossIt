@@ -104,8 +104,8 @@ export default class MyListings extends Component {
         );
     }
 
-    _onPressDockNewListing = () => {
-        this.props.navigator.replace({
+    _onPressDockNewListing = () => { //FIXME: this is push right now because newlisting currently does not have a nav bar, only a back button that pops. This should probably be changed to make it more consistent
+        this.props.navigator.push({
             title: 'New Listing',
             name: 'NewListing',
             passProps: {
