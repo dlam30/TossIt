@@ -57,7 +57,7 @@ export default class ItemPage extends Component {
                 <Button
                     onPress = {this._onPressBack}
                     style = { styles.button }
-                    title = 'Go Back'
+                    title = 'Go Back'>
                 </Button>
             </View>
         </View>
