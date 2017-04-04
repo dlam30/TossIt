@@ -177,43 +177,4 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: 'bold'
   }
-  /*container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    //textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  map: {
-      flex: 0.92,
-      width: width,
-      height: height - 50 // * 2/3
-  },
-  button: {
-      borderWidth: 1,
-      padding: 25,
-      borderColor: 'black'
-  },
-  toolbar: {
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-  },
-  toolbarButton: {
-      width: 50,
-      color:'#fff',
-      //textAlign: 'center'
-  },
-  toolbarTH: {
-      width: 50,
-      //textAlign: 'center'
-  },*/
 });

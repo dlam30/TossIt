@@ -17,6 +17,7 @@ import MyPickups from './Hauler/MyPickups'
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
 import NewListingContinued from './Poster/NewListingContinued'
+import ItemList from './Poster/ItemList'
 
 import DemoItem from './Item/DemoItem'
 import ItemPage from './Item/ItemPage'
@@ -186,6 +187,17 @@ export default class Route extends Component {
             // console.log("in Router to ItemPage" + route.username);
             return (
                 <ItemPage
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ItemList') {
+            // console.log("in Router to ItemList" + route.username);
+            return (
+                <ItemList
                     navigator = { navigator }
                     // username = { route.username }
                     {...route.passProps}

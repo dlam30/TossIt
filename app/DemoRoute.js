@@ -16,6 +16,7 @@ import MyPickups from './Hauler/MyPickups'
 import MyListings from './Poster/MyListings'
 import NewListing from './Poster/NewListing'
 import NewListingContinued from './Poster/NewListingContinued'
+import ItemList from './Poster/ItemList'
 
 import ItemPage from './Item/DemoItem'
 import DemoItem from './Item/ItemPage'
@@ -129,26 +130,34 @@ export default class DemoRoute extends Component {
     {/*Item Routes*/}
 
         if (route.name == 'DemoItem') {
-            // console.log("in Router to DemoItem" + route.username);
+            // console.log("in Router to DemoItem " + route.username);
             return (
                 <DemoItem
+                    navigator = { navigator }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ItemPage') {
+            // console.log("in Router to ItemPage " + route.username);
+            return (
+                <ItemPage
+                    navigator = { navigator }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ItemList') {
+            // console.log("in Router to ItemList" + route.username);
+            return (
+                <ItemList
                     navigator = { navigator }
                     // username = { route.username }
                     {...route.passProps}
                 />
             )
         }
-
-        if (route.name == 'DemoItem') {
-            // console.log("in Router to DemoItem" + route.username);
-            return (
-                <DemoItem
-                    navigator = { navigator }
-                    // username = { route.username }
-                    {...route.passProps}
-                />
-            )
-        }
-
     }
 }
