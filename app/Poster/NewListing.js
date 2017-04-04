@@ -34,113 +34,155 @@ export default class NewListing extends Component {
                     </Text>
                 </View>
                 */}
-                <View style={{flex: 1}}>
-                    <ScrollView style={{flex: 1}}>
-                    {/*
-                        <Text>Title: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ title: text })}
-                            placeholder = ''
-                            value = { this.state.title }
-                            onFocus = {() => this.setState({ helperText: 'Give your listing a title.' })}
-                        /> */}
+                <View style={{flex: 0.8}}>
+                    <ScrollView style={{flex: 1, width: width/1.1}}>
+                        <Text> </Text>
 
-                        <Text>Item: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ item: text })}
-                            placeholder = 'Item name'
-                            value = { this.state.item }
-                            onFocus = {() => this.setState({ helperText: 'What do you want to have removed?' })}
-                        />
+                        <Text style={{fontWeight: 'bold', fontSize: 40, color: 'white'}}>
+                            New Listing
+                        </Text>
 
-                        <Text>Description: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ description: text })}
-                            placeholder = 'Item description'
-                            value = { this.state.description }
-                            onFocus = {() => this.setState({ helperText: 'Provide a description or special instructions.' })}
-                        />
+                        <Text> </Text>
 
-                        <Text>Size: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ size: text })}
-                            placeholder = 'Size of the item'
-                            value = { this.state.size }
-                            onFocus = {() => this.setState({ helperText: 'What are the dimensions of your item?' })}
-                        />
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Item: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ item: text })}
+                                    placeholder = 'Item name'
+                                    value = { this.state.item }
+                                    onFocus = {() => this.setState({ helperText: 'What do you want to have removed?' })}
+                                />
+                            </View>
+                        </View>
 
-                        <Text>Weight: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ weight: text })}
-                            placeholder = 'Weight of the item'
-                            value = { this.state.weight }
-                            onFocus = {() => this.setState({ helperText: 'How much does your item weigh approximately?' })}
-                        />
-                        <Text>Location: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ location: text })}
-                            placeholder = 'Address e.g. 750 Ferst Dr NW, Atlanta, GA 30318'
-                            value = { this.state.location }
-                            onFocus = {() => this.setState({ helperText: 'Where is your junk located?' })}
-                        />
-                        {/*
-                        <Text>Pickup Date: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ pickupDate: text })}
-                            placeholder = 'Available date to pick up'
-                            value = { this.state.pickupDate }
-                            onFocus = {() => this.setState({ helperText: 'What DAY do you want the hauler come?' })}
-                        />
+                        <Text> </Text>
 
-                        <Text>Pickup Time: </Text>
-                        <TextInput
-                            style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ pickupTime: text })}
-                            placeholder = 'Available time to '
-                            value = { this.state.pickupTime }
-                            onFocus = {() => this.setState({ helperText: 'What TIME should the hauler arrive?' })}
-                        /> */}
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Description: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ description: text })}
+                                    placeholder = 'Item description'
+                                    value = { this.state.description }
+                                    onFocus = {() => this.setState({ helperText: 'Provide a description or special instructions.' })}
+                                />
+                            </View>
+                        </View>
 
-                        <Text>Payment Amount: </Text>
-                        <TextInput
+                        <Text> </Text>
+
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Size: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ size: text })}
+                                    placeholder = 'Size of the item'
+                                    value = { this.state.size }
+                                    onFocus = {() => this.setState({ helperText: 'What are the dimensions of your item?' })}
+                                />
+                            </View>
+                        </View>
+
+                        <Text> </Text>
+
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Weight: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ weight: text })}
+                                    placeholder = 'Weight of the item'
+                                    value = { this.state.weight }
+                                    onFocus = {() => this.setState({ helperText: 'How much does your item weigh approximately?' })}
+                                />
+                            </View>
+                        </View>
+
+                        <Text> </Text>
+
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Location: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ location: text })}
+                                    placeholder = 'Address e.g. 750 Ferst Dr NW, Atlanta, GA 30318'
+                                    value = { this.state.location }
+                                    onFocus = {() => this.setState({ helperText: 'Where is your junk located?' })}
+                                />
+                            </View>
+                        </View>
+
+                        <Text> </Text>
+
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Payment{"\n"}Amount: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                                <TextInput
+                                    style = { styles.textField }
+                                    underlineColorAndroid = 'rgba(0,0,0,0)'
+                                    onChangeText = {(text) => this.setState({ payment: text })}
+                                    placeholder = 'Money that pay to the hauler'
+                                    value = { this.state.payment }
+                                    onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
+                                />
+                            </View>
+                        </View>
+
+                        <Text> </Text>
+
+                        {/*<TextInput
                             style = { styles.textField }
-                            underlineColorAndroid = 'rgba(0,0,0,0)'
-                            onChangeText = {(text) => this.setState({ payment: text })}
-                            placeholder = 'Money that pay to the hauler'
-                            value = { this.state.payment }
-                            onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
-                        />
+                        />*/}
                     </ScrollView>
                 </View>
-                <View style={{}}>
+                <View style={{flex: 0.2, flexDirection: 'row', width: width/1.1}}>
+                    <View style={{flex: 0.57}}>
+                        <Text>  </Text>
+                    </View>
 
-                    <Button
-                        onPress = {this._onPressPost}
-                        style = {{height: 30, borderWidth: 1, borderColor: 'white' }}
-                        title = 'Post'
-                        color = '#50cb66'>
-                    </Button>
-                    <Button
-                        onPress = {this._onPressBack}
-                        style = {{height: 30, borderWidth: 1, borderColor: 'white' }}
-                        title = 'Go Back'
-                        color = '#50cb66'>
-                    </Button>
+                    <View style={{flex: 0.2}}>
+                        <Button
+                            onPress = {this._onPressPost}
+                            style = { styles.button }
+                            title = 'Post'
+                            color = '#50cb66'>
+                        </Button>
+                    </View>
+
+                    <View style={{flex: 0.03}}>
+                        <Text>  </Text>
+                    </View>
+
+                    <View style={{flex: 0.22}}>
+                        <Button
+                            onPress = {this._onPressBack}
+                            style = { styles.button }
+                            title = 'Cancel'
+                            color = '#50cb66'>
+                        </Button>
+                    </View>
                 </View>
             </View>
 
@@ -227,6 +269,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         //resizeMode: 'cover',
     },
+
+    label: {
+        color: 'white'
+    },
+
     textField: {
         flex: 1,
         width: width,
@@ -234,10 +281,19 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         color: 'white',
-        backgroundColor: '#50cb66',
+        backgroundColor: 'white',//'#50cb66',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        borderRadius: 3
     },
+
+    button: {
+        height: 30, 
+        borderWidth: 3, 
+        borderColor: 'white', 
+        borderRadius: 1,
+    },
+
     containter3: {
         flex: 1,
         width: undefined,
