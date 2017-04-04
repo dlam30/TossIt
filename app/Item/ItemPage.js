@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput, Image, ScrollView
+   View, Text, Button, TextInput, Image, ScrollView, StyleSheet
 } from 'react-native'
 
 export default class ItemPage extends Component {
@@ -30,9 +30,9 @@ export default class ItemPage extends Component {
                 <ScrollView style={{flex: 0.6, flexDirection: 'column'}}>
 
                     <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
-                        <Text style={{fontSize: 15}}>  </Text> 
+                        <Text>  </Text> 
                         <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\n"}</Text>
-                        <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by {this.props.username}{"\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
+                        <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by UserName{this.props.username}{"\t\t\t\t\t\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
                     </View>
                     <View style={{flex: 0.75, flexDirection: 'row'}}>
                         <View style={{flex: 0.025}}>
@@ -56,9 +56,8 @@ export default class ItemPage extends Component {
             <View>
                 <Button
                     onPress = {this._onPressBack}
-                    style = {{height: 30, borderWidth: 1, borderColor: 'limegreen' }}
+                    style = { styles.button }
                     title = 'Go Back'
-                    color = 'limegreen'>
                 </Button>
             </View>
         </View>
@@ -75,3 +74,13 @@ export default class ItemPage extends Component {
         })
     }
 }
+
+
+const styles = StyleSheet.create({
+    button: {
+        height: 30, 
+        borderWidth: 1, 
+        borderColor: '#50cb66', 
+        backgroundColor: '#50cb66' 
+    },
+})

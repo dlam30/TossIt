@@ -143,7 +143,7 @@ export default class NewListing extends Component {
                                     style = { styles.textField }
                                     underlineColorAndroid = 'rgba(0,0,0,0)'
                                     onChangeText = {(text) => this.setState({ payment: text })}
-                                    placeholder = 'Money that pay to the hauler'
+                                    placeholder = 'Amount paid to hauler'
                                     value = { this.state.payment }
                                     onFocus = {() => this.setState({ helperText: 'How much do you want to pay to have your item removed?' })}
                                 />
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: 'white',
         borderWidth: 1,
-        color: 'white',
+        color: 'black',
         backgroundColor: 'white',//'#50cb66',
         justifyContent: 'flex-end',
         alignItems: 'center',

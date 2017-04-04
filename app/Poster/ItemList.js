@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput, ScrollView, TouchableHighlight
+   View, Text, Button, TextInput, ScrollView, TouchableHighlight, Image, StyleSheet
 } from 'react-native'
 
 export default class ItemList extends Component {
@@ -10,11 +10,19 @@ export default class ItemList extends Component {
 
     render () {
         return (
-            <TouchableHighlight onPress={this._viewItemDetail}>
-                <View style={{borderColor: 'gray', borderWidth: 1}}>
-                    <Text>Item name: { this.props.info.name }</Text>
-                    <Text>Description: { this.props.info.description }</Text>
-                    <Text>Payment: { this.props.info.payment }{'\n'}</Text>
+            <TouchableHighlight onPress={this._viewItemDetail} style={{borderColor: 'gray', borderWidth: 1}}>
+                <View style= {{flex: 1, flexDirection: "row"}}>
+                    <View style={{flex: 0.2, justifyContent: 'center', alignItems: 'center'}}>
+                        <Image
+                            style={{width: 50, height: 50}}
+                            source={{uri: 'http://www.clker.com/cliparts/5/c/a/7/1194994548636809686emptybox.svg.hi.png'}}
+                        />
+                    </View>
+                    <View style={{flex: 0.8}}>
+                        <Text>Item name: { this.props.info.name }</Text>
+                        <Text>Description: { this.props.info.description }</Text>
+                        <Text>Payment: { this.props.info.payment }{'\n'}</Text>
+                    </View>
                 </View>
             </TouchableHighlight>
         )
