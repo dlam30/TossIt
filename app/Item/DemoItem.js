@@ -59,11 +59,4 @@ export default class DemoItem extends Component {
     _onPressBack = () => {
         this.props.navigator.pop()
     }
-    _onPressPost = () => { 
-        this.props.navigator.push({
-            title: 'New Listing cont..',
-            name: 'NewListingContinued',
-            // username: this.state.username
-        })
-    }
 }
