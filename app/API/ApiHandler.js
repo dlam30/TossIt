@@ -104,6 +104,33 @@ export default class ApiHandler {
     }
 
     /**
+     * A function that will return a list of geo location
+     */
+    getLocationList = (addresses, callback) => {
+        var result = [];
+        var length = 0;
+        var loop = (address) => {
+            this.getLocation(address, (response) => {
+                console.log(response.coordinate.latitude);
+                result.push(response);
+            });
+            length++;
+            if (length < addresses.length) {
+                loop(addresses[length]);
+            } else {
+                console.log('length ' + result.length);
+                callback(result);
+            }
+        }
+        if (length < addresses.length) {
+            loop(addresses[length]);
+        } else {
+            console.log('result length ' + result.length);
+            callback(result);
+        }
+    }
+
+    /**
      * A function to get geo location from an address
      */
     getLocation = (address, callback) => {
@@ -115,7 +142,13 @@ export default class ApiHandler {
             })
             .then((response) => {
                 var result = response.results[0].geometry.location;
-                callback(result);
+                var res = {
+                    coordinate: {
+                        latitude: result.lat,
+                        longitude: result.lng
+                    }
+                }
+                callback(res);
             })
     }
 

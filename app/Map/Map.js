@@ -99,15 +99,15 @@ export default class TossIt extends Component {
     }
     */
 
-    // componentWillMount = () => {
+    componentWillMount() {
+        this._getMarkerList();
+    }
 
-    // }
+    componentWillUpdate() {
+        this._getMarkerList();
+    }
 
     render() {
-        this._getMarkerList((response) => {
-            console.log(response);
-            // this.setState({ markers: response });
-        });
         return (
             <View style={styles.container}>
             <MapView
@@ -232,23 +232,28 @@ export default class TossIt extends Component {
         );
     }
 
-    _getMarkerList = (callback) => {
+    _getMarkerList = () => {
+        var result = [];
+        var addressArray = [];
         app.retrievePins('Atlanta', '', (response) => {
-            var result = [];
             response.forEach((item) => {
                 var address = item.item.address + ', ' + item.item.city + ', ' + item.item.state + ' ' + item.item.zipcode;
-                app.getLocation(address, (response) => {
-                    console.log('here ' + response);
-                    var location = {
-                        latitude: response.lat,
-                        longitude: response.long
-                    }
-                    result.push({
-                        coordinate: location
-                    })
-                });
+                addressArray.push(address);
+                // app.getLocation(address, (response) => {
+                //     console.log('here ' + response.lat + '  ' + response.lng);
+                //     var location = {
+                //         latitude: response.lat,
+                //         longitude: response.lng
+                //     }
+                //     result.push({
+                //         coordinate: location
+                //     })
+                // });
             });
-            callback(result);
+            app.getLocationList(addressArray, (response) => {
+                this.setState({ markers: response });
+                console.log(this.state.markers.length);
+            })
         });
     }
 
