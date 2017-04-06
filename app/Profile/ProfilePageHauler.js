@@ -36,7 +36,7 @@ export default class MyPickups extends Component {
                     <ScrollView contentContainerStyle = { styles.container }>
                         <TouchableHighlight style={ styles.profileName }>
                             <View style= {{flex: 1, flexDirection: "row"}}>
-                                <Text style={{fontSize: 30, justifyContent: 'center'}}>Username {"\n\n"}</Text>
+                                <Text style={{fontSize: 30, justifyContent: 'center'}}>{"\n"}Username {this.props.username.name} {"\n\n"}</Text>
                             </View>
                         </TouchableHighlight>
 
@@ -49,6 +49,20 @@ export default class MyPickups extends Component {
                                     <Image
                                         style={{width: 30, height: 30}}
                                         source= {require('../Images/Icons/Listings.png')}
+                                    />
+                                </View>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight onPress={this._onPressLogout} style={ styles.profileTouchable }>
+                            <View style= {{flex: 1, flexDirection: "row"}}>
+                                <View style={ styles.touchableText }>
+                                    <Text style={{fontSize: 20}}>Sign-Out</Text>
+                                </View>
+                                <View style={ styles.touchableImage }>
+                                    <Image
+                                        style={{width: 30, height: 30}}
+                                        source= {require('../Images/Icons/Profile.png')}
                                     />
                                 </View>
                             </View>
@@ -151,6 +165,11 @@ export default class MyPickups extends Component {
         })
     }
 
+    _onPressLogout = () => {
+        alert('You have been signed out of your account.');
+        this.props.navigator.popToTop()
+    }
+
 }
 
 const styles = StyleSheet.create({
@@ -175,16 +194,20 @@ const styles = StyleSheet.create({
     borderColor: 'gray', 
     borderBottomWidth: 1,
     width: width/1.1,
+    height: height/9,
     flex: 0.25,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   touchableText: {
-    flex: 0.8
+    flex: 0.8,
+    justifyContent: 'center'
   },
 
   touchableImage: {
     flex: 0.2,  
+    justifyContent: 'center',
     alignItems: 'center'
   }
 });
