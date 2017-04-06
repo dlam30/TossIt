@@ -64,7 +64,7 @@ export default class DemoInbox extends Component {
                     </View>
                 </TouchableHighlight>
             
-                <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
+                <TouchableHighlight onPress={this._onPressProfile} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image 
@@ -104,10 +104,10 @@ export default class DemoInbox extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressPoster = () => {
+    _onPressProfile = () => {
         this.props.navigator.replace({
-            title: 'My Listings',
-            name: 'MyListings',
+            title: 'Profile Page Poster',
+            name: 'ProfilePagePoster',
             passProps: {
                 username: this.props.username
             }

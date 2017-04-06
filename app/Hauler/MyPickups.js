@@ -89,7 +89,7 @@ export default class MyPickups extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
+                <TouchableHighlight onPress={this._onPressProfile} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image
@@ -129,10 +129,10 @@ export default class MyPickups extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressPoster = () => { //FIXME: Replace with profile page
+    _onPressProfile = () => { //FIXME: Replace with profile page
         this.props.navigator.replace({
-            title: 'My Listings',
-            name: 'MyListings',
+            title: 'Profile Page Hauler',
+            name: 'ProfilePageHauler',
             passProps: {
                 username: this.props.username
             }

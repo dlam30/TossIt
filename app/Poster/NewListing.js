@@ -3,6 +3,7 @@ import {
    View, Text, Button, TextInput, ScrollView, StyleSheet, Dimensions
 } from 'react-native'
 import ApiHandler from '../API/ApiHandler'
+
 var app = new ApiHandler();
 var {height, width} = Dimensions.get('window');
 

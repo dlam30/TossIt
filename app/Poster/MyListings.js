@@ -95,7 +95,7 @@ export default class MyListings extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={this._onPressHauler} underlayColor = {'gray'} activeOpacity = {50}
+                <TouchableHighlight onPress={this._onPressProfile} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image
@@ -130,19 +130,19 @@ export default class MyListings extends Component {
         })
     }
 
-    _onPressBack = () => {
-        this.props.navigator.pop()
-    }
-
-    _onPressHauler = () => { // FIXME: Replace with Profile
+    _onPressProfile = () => {
         isLoaded = false;
         this.props.navigator.replace({
-            title: 'Map',
-            name: 'Map',
+            title: 'Profile Page Poster',
+            name: 'ProfilePagePoster',
             passProps: {
                 username: this.props.username
             }
         })
+    }
+
+    _onPressBack = () => {
+        this.props.navigator.pop()
     }
 
     updateItemList = (callback) => {

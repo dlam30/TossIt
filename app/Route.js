@@ -24,6 +24,9 @@ import ItemPage from './Item/ItemPage'
 
 import DemoInbox from './Inbox/DemoInbox'
 
+import ProfilePageHauler from './Profile/ProfilePageHauler'
+import ProfilePagePoster from './Profile/ProfilePagePoster'
+
 import Root from './Root'
 import Login from './Login/Login'
 import Map from './Map/Map'
@@ -200,6 +203,28 @@ export default class Route extends Component {
                 <ItemList
                     navigator = { navigator }
                     // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        {/*Profile Routes*/}
+
+        if (route.name == 'ProfilePageHauler') {
+            // console.log("in Router to ProfilePageHauler" + route.username);
+            return (
+                <ProfilePageHauler
+                    navigator = { navigator }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ProfilePagePoster') {
+            // console.log("in Router to ProfilePagePoster" + route.username);
+            return (
+                <ProfilePagePoster
+                    navigator = { navigator }
                     {...route.passProps}
                 />
             )

@@ -170,7 +170,7 @@ export default class TossIt extends Component {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={this._onPressPoster} underlayColor = {'gray'} activeOpacity = {50}
+                <TouchableHighlight onPress={this._onPressProfile} underlayColor = {'gray'} activeOpacity = {50}
                     style = {{flex: 0.25, flexDirection: 'row'}}>
                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                         <Image
@@ -276,20 +276,10 @@ export default class TossIt extends Component {
         this.props.navigator.pop()
     }
 
-    _onPressPoster = () => { //FIXME: change to profile page?
+    _onPressProfile = () => { 
         this.props.navigator.replace({
-            title: 'My Listings',
-            name: 'MyListings',
-            passProps: {
-                username: this.props.username
-            }
-        })
-    }
-
-    _onPressHauler = () => { //FIXME: DO we need this? there is a dock button for pickups already
-        this.props.navigator.replace({
-            title: 'My Pickups',
-            name: 'MyPickups',
+            title: 'Profile Page Hauler',
+            name: 'ProfilePageHauler',
             passProps: {
                 username: this.props.username
             }
