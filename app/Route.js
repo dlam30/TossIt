@@ -31,7 +31,7 @@ import Root from './Root'
 import Login from './Login/Login'
 import Map from './Map/Map'
 import Register from './Login/Register'
-
+import Camera from './Camera/Camera'
 
 export default class Route extends Component {
     render() {
@@ -84,7 +84,14 @@ export default class Route extends Component {
                 />
             )
         }
-
+        if (route.name =='Camera') {
+          return (
+            <Camera
+              navigator = { navigator }
+              {...route.passProps}
+            />
+          )
+        }
     {/*Routes*/}
         if (route.name == 'Map') {
             return (

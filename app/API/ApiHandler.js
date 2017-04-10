@@ -24,6 +24,7 @@ db = firebaseApp.database();
 const URL = 'https://goingmerry-53c7c.firebaseio.com';
 const API_KEY = 'AIzaSyA1JOiFJQN7Z-fHLRkepmR1xBv3ubFiLHI';
 const PATH = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+//const storage = firebase.storage()
 
 export default class ApiHandler {
     // Debug purpose

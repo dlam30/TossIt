@@ -153,14 +153,29 @@ export default class NewListing extends Component {
 
                         <Text> </Text>
 
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                            <View style={{flex: 0.3, flexDirection: 'column'}}>
+                                <Text style={styles.label}>Image: </Text>
+                            </View>
+                            <View style={{flex: 0.7}}>
+                              <Button
+                                  onPress = {this._onPressCamera}
+                                  style = { styles.button }
+                                  title = 'Select...'
+                                  color = '#50cb66'>
+                              </Button>
+                            </View>
+                        </View>
                         {/*<TextInput
                             style = { styles.textField }
                         />*/}
                     </ScrollView>
                 </View>
                 <View style={{flex: 0.2, flexDirection: 'row', width: width/1.1}}>
+
                     <View style={{flex: 0.57}}>
                         <Text>  </Text>
+
                     </View>
 
                     <View style={{flex: 0.2}}>
@@ -198,6 +213,15 @@ export default class NewListing extends Component {
         }
         return true;
     }
+   _onPressCamera = () => {
+     this.props.navigator.replace({
+         title: 'Camera',
+         name: 'Camera',
+         passProps: {
+             username: this.props.username
+         }
+     })
+   }
 
     _onPressBack = () => {
         this.props.navigator.pop()
@@ -289,9 +313,9 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        height: 30, 
-        borderWidth: 3, 
-        borderColor: 'white', 
+        height: 30,
+        borderWidth: 3,
+        borderColor: 'white',
         borderRadius: 1,
     },
 
