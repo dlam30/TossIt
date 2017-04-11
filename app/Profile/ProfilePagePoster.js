@@ -176,7 +176,7 @@ export default class MyPickups extends Component {
 const styles = StyleSheet.create({
 
 container: {
-        alignItems: 'center', 
+        alignItems: 'center',
         width: width
     },
 
@@ -192,7 +192,7 @@ container: {
   },
 
   profileTouchable: {
-    borderColor: 'gray', 
+    borderColor: 'gray',
     borderBottomWidth: 1,
     width: width/1.1,
     height: height/9,
@@ -207,7 +207,7 @@ container: {
   },
 
   touchableImage: {
-    flex: 0.2,  
+    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center'
   }

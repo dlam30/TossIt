@@ -33,8 +33,8 @@ export default class ItemListHauler extends Component {
             title: 'Pickup Item Page',
             name: 'ItemPagePickup',
             passProps: {
-                username: this.props.username,
-                name: this.props.info.name,
+                name: this.props.info.owner_name,
+                title: this.props.info.name,
                 description: this.props.info.description,
                 payment: this.props.info.payment,
                 size: this.props.info.size,
@@ -42,7 +42,9 @@ export default class ItemListHauler extends Component {
                 address: this.props.info.address,
                 city: this.props.info.city,
                 state: this.props.info.state,
-                zipcode: this.props.zipcode
+                zipcode: this.props.zipcode,
+                phone_number: this.props.info.phone,
+                view: true
             }
         })
     }

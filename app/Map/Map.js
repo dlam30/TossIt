@@ -134,6 +134,7 @@ export default class TossIt extends Component {
                         size={(marker.size)}
                         onCalloutPress={() => this._pressMarker({
                             info: {
+                                username: marker.user,
                                 key: marker.key,
                                 description: marker.description,
                                 title: marker.title,
@@ -222,7 +223,8 @@ export default class TossIt extends Component {
                     state: item.item.state,
                     zipcode: item.item.zipcode,
                     name: item.info.name,
-                    phone_number: item.info.phone_number
+                    phone_number: item.info.phone_number,
+                    user: item.user
                 });
             })
             if (isLoaded) {
@@ -236,7 +238,7 @@ export default class TossIt extends Component {
             title: 'Pickup Item Page',
             name: 'ItemPagePickup',
             passProps: {
-                username: info.info.key,
+                username: this.props.username,
                 title: info.info.title,
                 description: info.info.description,
                 payment: info.info.payment,
@@ -246,7 +248,7 @@ export default class TossIt extends Component {
                 city: info.info.city,
                 state: info.info.state,
                 zipcode: info.info.zipcode,
-                name: info.info.name,
+                owner_name: info.info.name,
                 phone_number: info.info.phone_number
             }
         })

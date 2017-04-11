@@ -34,7 +34,7 @@ export default class ItemPagePickup extends Component {
                 <ScrollView style={{flex: 0.6, flexDirection: 'column'}}>
 
                     <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
-                        <Text>  </Text> 
+                        <Text>  </Text>
                         <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.title }{"\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
                         <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by {this.props.name}{"\t\t\t"}Contact: {this.props.phone_number}{"\n"}</Text>
                     </View>
@@ -106,6 +106,8 @@ export default class ItemPagePickup extends Component {
                     // time       : this.state.time,
                     // title      : this.state.title,
                     weight     : this.props.weight,
+                    owner_name : this.props.owner_name,
+                    phone      : this.props.phone_number
                 };
         app.addItem(this.props.username, data);
     }
@@ -114,9 +116,9 @@ export default class ItemPagePickup extends Component {
 
 const styles = StyleSheet.create({
     button: {
-        height: 30, 
-        borderWidth: 1, 
-        borderColor: '#50cb66', 
-        backgroundColor: '#50cb66' 
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#50cb66',
+        backgroundColor: '#50cb66'
     }
 })
