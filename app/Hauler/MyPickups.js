@@ -12,7 +12,7 @@ import {
    StatusBar,
    Image
 } from 'react-native'
-import ItemList from '../Poster/ItemList'
+import ItemListHauler from '../Hauler/ItemListHauler'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
 
@@ -23,10 +23,20 @@ export default class MyPickups extends Component {
             array: []
         }
     }
+
+    componentWillMount() {
+        isLoaded = true;
+        this.updateItemList();
+    }
+
+    componentWillUpdate() {
+        this.updateItemList();
+    }
+
     render() {
-        this.updateItemList((response) => {
+        /*this.updateItemList((response) => {
             this.setState({ array: response });
-        });
+        });*/
 
         var result = [];
         var array = this.state.array;
@@ -167,7 +177,11 @@ export default class MyPickups extends Component {
                     count++;
                 }
             }
-            callback(array);
+            if (array !== undefined || this.state.array != array) {
+                if (isLoaded) {
+                    this.setState({ array: array });
+                }
+            }
         })
     }
 }

@@ -105,6 +105,14 @@ export default class ApiHandler {
     }
 
     /**
+     * A function to add a new item to pickup
+     */
+    addItem = (username, data) => {
+        var _url = 'users/' + username + '/pickup_list/';
+        db.ref(_url).push(data);
+    }
+
+    /**
      * A function to get geo location from an address
      */
     getLocation = (address, callback) => {
@@ -151,7 +159,8 @@ export default class ApiHandler {
                             result.push({
                                 item: data.post_list[item],
                                 user: user.key,
-                                key: item
+                                key: item,
+                                info: data
                             });
                             // }
                         }

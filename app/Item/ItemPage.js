@@ -31,7 +31,7 @@ export default class ItemPage extends Component {
 
                     <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
                         <Text>  </Text> 
-                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\t\t\t\t\t\t\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
+                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
                         <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by UserName{this.props.username}{"\n"}</Text>
                     </View>
                     <View style={{flex: 0.75, flexDirection: 'row'}}>

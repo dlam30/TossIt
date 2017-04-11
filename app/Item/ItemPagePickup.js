@@ -33,8 +33,8 @@ export default class ItemPagePickup extends Component {
 
                     <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
                         <Text>  </Text> 
-                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\t\t\t\t\t\t\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
-                        <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by UserName{this.props.username}{"\t\t\t"}Contact: (this.props.phone_number){"\n"}</Text>
+                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.title }{"\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
+                        <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by {this.props.name}{"\t\t\t"}Contact: {this.props.phone_number}{"\n"}</Text>
                     </View>
                     <View style={{flex: 0.75, flexDirection: 'row'}}>
                         <View style={{flex: 0.025}}>
@@ -47,10 +47,10 @@ export default class ItemPagePickup extends Component {
 
                             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Item Specifics</Text>
                             <Text style={{fontSize: 20}}>Size: { this.props.size }{"\n"}</Text>
-                            <Text style={{fontSize: 20}}>Weight: ( this.props.weight ){"\n"}</Text>
+                            <Text style={{fontSize: 20}}>Weight: { this.props.weight }{"\n"}</Text>
 
                             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Pickup Details</Text>
-                            <Text style={{fontSize: 20}}>Location: ( this.props.address ), ( this.props.city ), ( this.props.state ) ( this.props.zipcode )</Text>
+                            <Text style={{fontSize: 20}}>Location: { this.props.address }, { this.props.city }, { this.props.state } { this.props.zipcode }</Text>
                         </View>
                     </View>
                 </ScrollView>
@@ -92,6 +92,38 @@ export default class ItemPagePickup extends Component {
     _onPressRequest = () => {
         alert('Item added to Pickups.');
     }
+
+
+    /*_onPressPost = () => {
+        var splitAddress = this.state.location.split(',');
+        var splitState = this.removeSpaces(splitAddress[2]).split(' ');
+        app.getLocation(this.state.location, (response) => {
+            if (response) {
+                var data = {
+                    description: this.state.description,
+                    name       : this.state.item,
+                    address    : this.removeSpaces(splitAddress[0]),
+                    city       : this.removeSpaces(splitAddress[1]),
+                    state      : this.removeSpaces(splitState[0]),
+                    zipcode    : this.removeSpaces(splitState[1]),
+                    payment    : this.state.payment,
+                    // pickupDate : this.state.pickupDate,
+                    size       : this.state.size,
+                    // time       : this.state.time,
+                    // title      : this.state.title,
+                    weight     : this.state.weight,
+                    coord      : response
+                }
+                if (this.checkMissingFields()) {
+                    app.postItem(this.props.username, data);
+                    alert('Posted!');
+                    this.props.navigator.pop();
+                }
+            } else {
+                alert('Invalid address!');
+            }
+        })
+    }*/
 }
 
 

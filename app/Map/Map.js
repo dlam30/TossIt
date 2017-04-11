@@ -128,11 +128,26 @@ export default class TossIt extends Component {
                     <MapView.Marker
                         key={marker.key}
                         coordinate={marker.coordinate}
-                        title={(marker.title).toString()}
+                        title={marker.title}
                         description={(marker.description)}
                         payment={(marker.payment)}
                         size={(marker.size)}
-                        onCalloutPress={this._pressMarker}
+                        onCalloutPress={() => this._pressMarker({
+                            info: {
+                                key: marker.key,
+                                description: marker.description,
+                                title: marker.title,
+                                payment: marker.payment,
+                                size: marker.size,
+                                weight: marker.weight,
+                                address: marker.address,
+                                city: marker.city,
+                                state: marker.state,
+                                zipcode: marker.zipcode,
+                                name: marker.name,
+                                phone_number: marker.phone_number
+                            }
+                        })}
                     />
                 ))}
                 </MapView>
@@ -200,7 +215,14 @@ export default class TossIt extends Component {
                     title: item.item.name,
                     description: item.item.description,
                     payment: item.item.payment,
-                    size: item.item.size
+                    size: item.item.size,
+                    weight: item.item.weight,
+                    address: item.item.address,
+                    city: item.item.city,
+                    state: item.item.state,
+                    zipcode: item.item.zipcode,
+                    name: item.info.name,
+                    phone_number: item.info.phone_number
                 });
             })
             if (isLoaded) {
@@ -209,24 +231,23 @@ export default class TossIt extends Component {
         });
     }
 
-    _pressMarker = () => {
+    _pressMarker = (info) => {
         this.props.navigator.push({
             title: 'Pickup Item Page',
             name: 'ItemPagePickup',
             passProps: {
-                username: this.props.username,
-                name: this.props.username,
-                description: this.props.description,
-                payment: this.props.payment,
-                size: this.props.size
-
-                /*payment: this.props.info.payment,
-                size: this.props.info.size,
-                weight: this.props.info.weight,
-                address: this.props.info.address,
-                city: this.props.info.city,
-                state: this.props.info.state,
-                zipcode: this.props.zipcode*/
+                username: info.info.key,
+                title: info.info.title,
+                description: info.info.description,
+                payment: info.info.payment,
+                size: info.info.size,
+                weight: info.info.weight,
+                address: info.info.address,
+                city: info.info.city,
+                state: info.info.state,
+                zipcode: info.info.zipcode,
+                name: info.info.name,
+                phone_number: info.info.phone_number
             }
         })
     }
