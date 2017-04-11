@@ -55,7 +55,6 @@ export default class TossIt extends Component {
     }
 
     componentDidMount() {
-        alert('im called');
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -73,11 +72,11 @@ export default class TossIt extends Component {
         );
     }
     onRegionChange(region) {
-        this.setState({region});
+        this.setState({region: region});
     }
 
     onRegionChangeComplete(region) {
-        this.setState({region});
+        this.setState({region: region});
     }
 
     onMapPress(e) {
