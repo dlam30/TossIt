@@ -75,10 +75,6 @@ export default class TossIt extends Component {
         this.setState({region: region});
     }
 
-    onRegionChangeComplete(region) {
-        this.setState({region: region});
-    }
-
     onMapPress(e) {
         // this.setState({
         //     markers: [
@@ -109,9 +105,9 @@ export default class TossIt extends Component {
         this._updateMap();
     }
 
-    componentWillUpdate = () => {
-        this._updateMap();
-    }
+    // componentWillUpdate = () => {
+    //     this._updateMap();
+    // }
 
     render() {
 
