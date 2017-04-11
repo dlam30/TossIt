@@ -43,7 +43,7 @@ export default class MyPickups extends Component {
 
         if (array.length > 0) {
             array.forEach((item) => {
-                result.push(<ItemList key={item.item} info={item} />);
+                result.push(<ItemListHauler key={item.item} info={item} />);
             });
         } else {
             result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);

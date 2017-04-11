@@ -3,6 +3,8 @@ import {
    View, Text, Button, TextInput, Image, ScrollView, StyleSheet, Dimensions
 } from 'react-native'
 
+import ApiHandler from '../API/ApiHandler'
+var app = new ApiHandler();
 var {height, width} = Dimensions.get('window');
 
 export default class ItemPagePickup extends Component {
@@ -91,39 +93,22 @@ export default class ItemPagePickup extends Component {
     }
     _onPressRequest = () => {
         alert('Item added to Pickups.');
-    }
-
-
-    /*_onPressPost = () => {
-        var splitAddress = this.state.location.split(',');
-        var splitState = this.removeSpaces(splitAddress[2]).split(' ');
-        app.getLocation(this.state.location, (response) => {
-            if (response) {
-                var data = {
-                    description: this.state.description,
-                    name       : this.state.item,
-                    address    : this.removeSpaces(splitAddress[0]),
-                    city       : this.removeSpaces(splitAddress[1]),
-                    state      : this.removeSpaces(splitState[0]),
-                    zipcode    : this.removeSpaces(splitState[1]),
-                    payment    : this.state.payment,
+        var data = {
+                    description: this.props.description,
+                    name       : this.props.title,
+                    address    : this.props.address,
+                    city       : this.props.city,
+                    state      : this.props.state,
+                    zipcode    : this.props.zipcode,
+                    payment    : this.props.payment,
                     // pickupDate : this.state.pickupDate,
-                    size       : this.state.size,
+                    size       : this.props.size,
                     // time       : this.state.time,
                     // title      : this.state.title,
-                    weight     : this.state.weight,
-                    coord      : response
-                }
-                if (this.checkMissingFields()) {
-                    app.postItem(this.props.username, data);
-                    alert('Posted!');
-                    this.props.navigator.pop();
-                }
-            } else {
-                alert('Invalid address!');
-            }
-        })
-    }*/
+                    weight     : this.props.weight,
+                };
+        app.addItem(this.props.username, data);
+    }
 }
 
 
