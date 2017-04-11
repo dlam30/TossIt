@@ -23,6 +23,7 @@ export default class NewListing extends Component {
                         pickupDate: '',
                         time: '',
                         payment: '',
+                        coord: '',
                         helperText: 'Tap any field to get started!'}
     }
     render() {
@@ -126,7 +127,7 @@ export default class NewListing extends Component {
                                     style = { styles.textField }
                                     underlineColorAndroid = 'rgba(0,0,0,0)'
                                     onChangeText = {(text) => this.setState({ location: text })}
-                                    placeholder = 'Address e.g. 750 Ferst Dr NW, Atlanta, GA 30318'
+                                    placeholder = 'e.g. 750 Ferst Dr NW, Atlanta, GA 30318'
                                     value = { this.state.location }
                                     onFocus = {() => this.setState({ helperText: 'Where is your junk located?' })}
                                 />
@@ -206,46 +207,32 @@ export default class NewListing extends Component {
     _onPressPost = () => {
         var splitAddress = this.state.location.split(',');
         var splitState = this.removeSpaces(splitAddress[2]).split(' ');
-        var data = {
-            description: this.state.description,
-            name       : this.state.item,
-            address    : this.removeSpaces(splitAddress[0]),
-            city       : this.removeSpaces(splitAddress[1]),
-            state      : this.removeSpaces(splitState[0]),
-            zipcode    : this.removeSpaces(splitState[1]),
-            payment    : this.state.payment,
-            // pickupDate : this.state.pickupDate,
-            size       : this.state.size,
-            // time       : this.state.time,
-            // title      : this.state.title,
-            weight     : this.state.weight
-        }
-        if (this.checkMissingFields()) {
-            app.postItem(this.props.username, data);
-            alert('Posted!');
-            this.props.navigator.pop();
-        }
-        // var array = [];
-        // var count = 0;
-        // var routes = this.props.navigator.state.routeStack;
-        // app.getItem(this.props.username, (response) => {
-        //     for (var key in response) {
-        //         if (response.hasOwnProperty(key)) {
-        //             var obj = response[key];
-        //             array[count] = obj;
-        //             count++;
-        //         }
-        //     }
-        //     for (var i = routes.length - 1; i >= 0; i--) {
-        //         if (routes[i].name == 'MyListings') {
-        //             var destRoute = this.props.navigator.getCurrentRoutes()[i];
-        //             destRoute.passProps = {
-        //                 array: array
-        //             }
-        //             this.props.navigator.popToRoute(destRoute);
-        //         }
-        //     }
-        // })
+        app.getLocation(this.state.location, (response) => {
+            if (response) {
+                var data = {
+                    description: this.state.description,
+                    name       : this.state.item,
+                    address    : this.removeSpaces(splitAddress[0]),
+                    city       : this.removeSpaces(splitAddress[1]),
+                    state      : this.removeSpaces(splitState[0]),
+                    zipcode    : this.removeSpaces(splitState[1]),
+                    payment    : this.state.payment,
+                    // pickupDate : this.state.pickupDate,
+                    size       : this.state.size,
+                    // time       : this.state.time,
+                    // title      : this.state.title,
+                    weight     : this.state.weight,
+                    coord      : response
+                }
+                if (this.checkMissingFields()) {
+                    app.postItem(this.props.username, data);
+                    alert('Posted!');
+                    this.props.navigator.pop();
+                }
+            } else {
+                alert('Invalid address!');
+            }
+        })
     }
 
     // A function to remove spaces at head and tail of a string
@@ -289,9 +276,9 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        height: 30, 
-        borderWidth: 3, 
-        borderColor: 'white', 
+        height: 30,
+        borderWidth: 3,
+        borderColor: 'white',
         borderRadius: 1,
     },
 

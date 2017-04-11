@@ -121,6 +121,7 @@ export default class MyListings extends Component {
     }
 
     _onPressDockInbox = () => {
+        isLoaded = false;
         this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',

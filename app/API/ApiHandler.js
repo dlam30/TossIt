@@ -22,7 +22,8 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 db = firebaseApp.database();
 const URL = 'https://goingmerry-53c7c.firebaseio.com';
-const API_KEY = 'AIzaSyA1JOiFJQN7Z-fHLRkepmR1xBv3ubFiLHI';
+// const API_KEY = 'AIzaSyA1JOiFJQN7Z-fHLRkepmR1xBv3ubFiLHI';
+const API_KEY = 'AIzaSyD_3jscrs2TyDcDXVe0ulQQrgyMJMOHSg0';
 const PATH = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 
 export default class ApiHandler {
@@ -115,7 +116,10 @@ export default class ApiHandler {
             })
             .then((response) => {
                 var result = response.results[0].geometry.location;
-                callback(result);
+                callback(result.lat + ',' + result.lng);
+            })
+            .catch((error) => {
+                callback(false);
             })
     }
 
@@ -143,12 +147,13 @@ export default class ApiHandler {
                 if (data.post_list !== undefined) {
                     for (var item in data.post_list) {
                         if (data.post_list.hasOwnProperty(item)) {
-                            if (data.post_list[item].city == city) {
-                                result.push({
-                                    item: data.post_list[item],
-                                    user: user.key
-                                });
-                            }
+                            // if (data.post_list[item].city == city) {
+                            result.push({
+                                item: data.post_list[item],
+                                user: user.key,
+                                key: item
+                            });
+                            // }
                         }
                     }
                 }
