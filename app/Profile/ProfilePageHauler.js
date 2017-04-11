@@ -154,7 +154,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressPoster = () => { //FIXME: Replace with profile page
-        alert('Switched to Hauler Mode!');
+        alert('Switched to Poster Mode!');
 
         this.props.navigator.replace({
             title: 'Profile Page Poster',

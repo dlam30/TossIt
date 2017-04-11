@@ -130,6 +130,8 @@ export default class TossIt extends Component {
                         coordinate={marker.coordinate}
                         title={(marker.title).toString()}
                         description={(marker.description)}
+                        payment={(marker.payment)}
+                        size={(marker.size)}
                         onCalloutPress={this._pressMarker}
                     />
                 ))}
@@ -196,7 +198,9 @@ export default class TossIt extends Component {
                         longitude: coord[1]
                     },
                     title: item.item.name,
-                    description: item.item.description
+                    description: item.item.description,
+                    payment: item.item.payment,
+                    size: item.item.size
                 });
             })
             if (isLoaded) {
@@ -206,7 +210,25 @@ export default class TossIt extends Component {
     }
 
     _pressMarker = () => {
-        alert('clicked');
+        this.props.navigator.push({
+            title: 'Pickup Item Page',
+            name: 'ItemPagePickup',
+            passProps: {
+                username: this.props.username,
+                name: this.props.username,
+                description: this.props.description,
+                payment: this.props.payment,
+                size: this.props.size
+
+                /*payment: this.props.info.payment,
+                size: this.props.info.size,
+                weight: this.props.info.weight,
+                address: this.props.info.address,
+                city: this.props.info.city,
+                state: this.props.info.state,
+                zipcode: this.props.zipcode*/
+            }
+        })
     }
 
     _getMarkerList = (callback) => {

@@ -21,6 +21,7 @@ import ItemList from './Poster/ItemList'
 
 import DemoItem from './Item/DemoItem'
 import ItemPage from './Item/ItemPage'
+import ItemPagePickup from './Item/ItemPagePickup'
 
 import DemoInbox from './Inbox/DemoInbox'
 
@@ -190,6 +191,17 @@ export default class Route extends Component {
             // console.log("in Router to ItemPage" + route.username);
             return (
                 <ItemPage
+                    navigator = { navigator }
+                    // username = { route.username }
+                    {...route.passProps}
+                />
+            )
+        }
+
+        if (route.name == 'ItemPagePickup') {
+            // console.log("in Router to ItemPagePickup" + route.username);
+            return (
+                <ItemPagePickup
                     navigator = { navigator }
                     // username = { route.username }
                     {...route.passProps}
