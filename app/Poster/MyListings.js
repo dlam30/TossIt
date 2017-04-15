@@ -53,13 +53,17 @@ export default class MyListings extends Component {
 
         return (
             <View style={{flex: 1}}>
-            <View style={{flex: 0.92}}>
-                <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
-                    Listings
-                </Text>
-                <ScrollView>
+            <View style={{flex: 0.92, justifyContent: 'center'}}>
+                <View style={{flex: 0.1, justifyContent: 'center', backgroundColor: '#50cb66'}}>
+                    <Text style={{fontWeight: 'bold', fontSize: 30, color: 'white'}}>
+                        {'\t'}Listings
+                    </Text>
+                </View>
+                <View style={{flex: 0.9, justifyContent: 'center'}}>
+                    <ScrollView>
                         <View>{ result }</View>
-                </ScrollView>
+                    </ScrollView>
+                </View>
             </View>
 
             <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>

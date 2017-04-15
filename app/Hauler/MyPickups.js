@@ -55,12 +55,16 @@ export default class MyPickups extends Component {
             <View style={{flex: 1}}>
 
             <View style={{flex: 0.92}}>
-                <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
-                    Pickups
-                </Text>
-                <ScrollView>
-                    <View>{ result }</View>
-                </ScrollView>
+                <View style={{flex: 0.1, justifyContent: 'center', backgroundColor: '#50cb66'}}>
+                    <Text style={{fontWeight: 'bold', fontSize: 30, color: 'white'}}>
+                        {'\t'}Pickups
+                    </Text>
+                </View>
+                <View style={{flex: 0.9, justifyContent: 'center'}}>
+                    <ScrollView>
+                        <View>{ result }</View>
+                    </ScrollView>
+                </View>
             </View>
 
             <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
