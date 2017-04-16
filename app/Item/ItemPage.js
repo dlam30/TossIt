@@ -16,67 +16,81 @@ export default class ItemPage extends Component {
                         city: '',
                         state: '',
                         zipcode: ''}
+        //alert(this.props.imageURL);
     }
     render() {
-        return (
-            <View style={{flex: 1}}>
-                <View style={{flex: 1}}>
-                    <View style={{flex: 0.4}}>
-                        <Image
-                            style={{flex: 1, position: 'relative'}}
-                        source={{uri: 'https://cnet1.cbsistatic.com/img/B3u_kAp-a5RdLn28Am12VaRsqY8=/300x620/2015/05/16/0b0dfa43-041a-4fd0-9fde-025efbe9b721/ge-french-door-refrigerator-pfe28rshss-product-photos-21.jpg'}}
-                    />
-                </View>
-                <ScrollView style={{flex: 0.6, flexDirection: 'column'}}>
+          return (
+              <View style={{flex: 1}}>
+                  <View style={{flex: 1}}>
+                      <View style={{flex: 0.6}}>
+                          <Image
+                              style={ styles.image }
+                              source={{uri: this.props.imageURL}}
+                          />
+                  </View>
+                  <ScrollView style={{flex: 0.4, flexDirection: 'column'}}>
 
-                    <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
-                        <Text>  </Text> 
-                        <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\t\t\t\t\t\t\t\t\t\t\t"}{ this.props.payment }{"\n"}</Text>
-                        <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}by UserName{this.props.username}{"\n"}</Text>
-                    </View>
-                    <View style={{flex: 0.75, flexDirection: 'row'}}>
-                        <View style={{flex: 0.025}}>
-                            <Text>  </Text>
-                        </View>
+                      <View style={{flex: 0.25, borderWidth: 0.5, borderColor: 'gray'}}>
+                          <Text>  </Text>
+                          <Text style={{fontSize: 30, fontWeight: 'bold'}}>{"\t"}{ this.props.name }{"\n"}</Text>
+                          <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\t"}Payment: ${ this.props.payment }{"\n"}</Text>
+                      </View>
+                      <View style={{flex: 0.75, flexDirection: 'row'}}>
+                          <View style={{flex: 0.025}}>
+                              <Text>  </Text>
+                          </View>
 
-                        <View style={{flex: 0.975}}>
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>{"\n"}Description</Text>
-                            <Text style={{fontSize: 20}}>{ this.props.description }{"\n"}</Text>
+                          <View style={{flex: 0.975}}>
+                              <Text style={{fontSize: 15, fontWeight: 'bold'}}>{"\n"}Description</Text>
+                              <Text style={{fontSize: 15}}>{ this.props.description }{"\n"}</Text>
 
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Item Specifics</Text>
-                            <Text style={{fontSize: 20}}>Size: { this.props.size }{"\n"}</Text>
-                            <Text style={{fontSize: 20}}>Weight: { this.props.weight }{"\n"}</Text>
+                              <Text style={{fontSize: 15, fontWeight: 'bold'}}>Item Specifics</Text>
+                              <Text style={{fontSize: 15}}>Size: { this.props.size }{"\n"}</Text>
+                              <Text style={{fontSize: 15}}>Weight: { this.props.weight }{"\n"}</Text>
 
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Pickup Details</Text>
-                            <Text style={{fontSize: 20}}>Location: { this.props.address }, { this.props.city }, { this.props.state } { this.props.zipcode }</Text>
-                        </View>
-                    </View>
-                </ScrollView>
-            </View>
-            <View>
-                <Button
-                    onPress = {this._onPressBack}
-                    style = { styles.button }
-                    title = 'Back'
-                    color = '#50cb66'>
-
-                </Button>
-            </View>
-        </View>
-        )
-    }
+                              <Text style={{fontSize: 15, fontWeight: 'bold'}}>Pickup Details</Text>
+                              <Text style={{fontSize: 15}}>Location: { this.props.address }, { this.props.city }, { this.props.state } { this.props.zipcode }</Text>
+                          </View>
+                      </View>
+                  </ScrollView>
+              </View>
+              <View>
+                  <Button
+                      onPress = {this._onPressBack}
+                      style = { styles.button }
+                      title = 'Go Back'>
+                  </Button>
+              </View>
+          </View>
+          )
+      }
 
     _onPressBack = () => {
         this.props.navigator.pop()
+        /*
+        this.props.navigator.replace({
+            title: 'ItemList',
+            name: 'ItemList',
+            passProps: {
+                username: this.props.username
+            }
+        })
+        */
     }
 }
 
 
 const styles = StyleSheet.create({
     button: {
-        height: 30, 
-        borderWidth: 1, 
-        borderColor: '#50cb66', 
-        backgroundColor: '#50cb66' 
+        height: 30,
+        borderWidth: 1,
+        borderColor: '#50cb66',
+        backgroundColor: '#50cb66'
+    },
+    image: {
+      height: 200,
+      resizeMode: 'contain',
+      borderWidth: 5,
+      borderColor: "black"
     },
 })
