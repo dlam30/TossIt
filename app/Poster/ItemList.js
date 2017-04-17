@@ -42,7 +42,8 @@ export default class ItemList extends Component {
                 address: this.props.info.address,
                 city: this.props.info.city,
                 state: this.props.info.state,
-                zipcode: this.props.zipcode
+                zipcode: this.props.info.zipcode,
+                imageURL: this.props.info.imageURL
             }
         })
     }

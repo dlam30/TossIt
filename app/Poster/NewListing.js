@@ -5,6 +5,7 @@ import {
 import ApiHandler from '../API/ApiHandler'
 
 var app = new ApiHandler();
+
 var {height, width} = Dimensions.get('window');
 
 export default class NewListing extends Component {
@@ -154,6 +155,19 @@ export default class NewListing extends Component {
 
                         <Text> </Text>
 
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                           <View style={{flex: 0.3, flexDirection: 'column'}}>
+                               <Text style={styles.label}>Image: </Text>
+                           </View>
+                           <View style={{flex: 0.7}}>
+                             <Button
+                                 onPress = {this._onPressCamera}
+                                 style = { styles.button }
+                                 title = 'Select...'
+                                 color = '#50cb66'>
+                             </Button>
+                           </View>
+                        </View>
                         {/*<TextInput
                             style = { styles.textField }
                         />*/}
@@ -199,7 +213,15 @@ export default class NewListing extends Component {
         }
         return true;
     }
-
+    _onPressCamera = () => {
+        this.props.navigator.replace({
+            title: 'Camera',
+            name: 'Camera',
+            passProps: {
+                username: this.props.username
+            }
+        })
+    }
     _onPressBack = () => {
         this.props.navigator.pop()
     }
@@ -222,7 +244,8 @@ export default class NewListing extends Component {
                     // time       : this.state.time,
                     // title      : this.state.title,
                     weight     : this.state.weight,
-                    coord      : response
+                    coord      : response,
+                    imageURL   : this.props.imageURL
                 }
                 if (this.checkMissingFields()) {
                     app.postItem(this.props.username, data);
