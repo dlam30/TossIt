@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {
-   View, Text, Button, TextInput, Image, ScrollView, StyleSheet
+   View, Text, Button, TextInput, Image, ScrollView, StyleSheet, Dimensions
 } from 'react-native'
+
+var {height, width} = Dimensions.get('window');
 
 export default class ItemPage extends Component {
     constructor(props) {
@@ -87,10 +89,24 @@ const styles = StyleSheet.create({
         borderColor: '#50cb66',
         backgroundColor: '#50cb66'
     },
+
     image: {
-      height: 200,
-      resizeMode: 'contain',
-      borderWidth: 5,
-      borderColor: "black"
+        height: 200,
+        resizeMode: 'contain',
+        borderWidth: 5,
+        borderColor: "black",
+        flex: 0.25,
+        height: 30, 
+        borderWidth: 1, 
+        borderColor: '#50cb66', 
+        backgroundColor: '#50cb66',
     },
+
+    details: {
+        flex: 0.33,
+        borderBottomWidth: 1, 
+        borderColor: 'grey', 
+        backgroundColor: 'white',
+        justifyContent: 'center'
+    }
 })

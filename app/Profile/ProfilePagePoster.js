@@ -30,13 +30,23 @@ export default class MyPickups extends Component {
             <View style={{flex: 1}}>
 
                 <View style={{flex: 0.92}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
+                    <Text style={{fontWeight: 'bold', fontSize: 35, color: 'gray'}}>
                         {"\t"}Profile Page
                     </Text>
                     <ScrollView contentContainerStyle = { styles.container }>
                         <TouchableHighlight style={ styles.profileName }>
-                            <View style= {{flex: 1, flexDirection: "row"}}>
-                                <Text style={{fontSize: 30, justifyContent: 'center'}}>{"\n"}Username{"\n\n"}</Text>
+                            <View style= {{flex: 1, flexDirection: "row", justifyContent: 'center'}}>
+                                <View style= {{flex: 0.8}}>
+                                    <Text style={{fontSize: 30, color: 'gray'}}>
+                                        {"\n"}Username {this.props.username.name} {"\n\n"}
+                                    </Text>
+                                </View>
+                                <View style={ styles.touchableImage }>
+                                    <Image
+                                        style={{width: 50, height: 50}}
+                                        source= {require('../Images/Icons/Profile.png')}
+                                    />
+                                </View>
                             </View>
                         </TouchableHighlight>
 
@@ -176,7 +186,7 @@ export default class MyPickups extends Component {
 const styles = StyleSheet.create({
 
 container: {
-        alignItems: 'center', 
+        alignItems: 'center',
         width: width
     },
 
@@ -192,7 +202,7 @@ container: {
   },
 
   profileTouchable: {
-    borderColor: 'gray', 
+    borderColor: 'gray',
     borderBottomWidth: 1,
     width: width/1.1,
     height: height/9,
@@ -207,7 +217,7 @@ container: {
   },
 
   touchableImage: {
-    flex: 0.2,  
+    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center'
   }

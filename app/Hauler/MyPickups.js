@@ -12,9 +12,10 @@ import {
    StatusBar,
    Image
 } from 'react-native'
-import ItemList from '../Poster/ItemList'
+import ItemListHauler from '../Hauler/ItemListHauler'
 import ApiHandler from '../API/ApiHandler'
 var app = new ApiHandler();
+var isLoaded = true;
 
 export default class MyPickups extends Component {
     constructor(props) {
@@ -23,17 +24,29 @@ export default class MyPickups extends Component {
             array: []
         }
     }
+
+    componentWillMount() {
+        isLoaded = true;
+        this.updateItemList();
+    }
+
+    componentWillUpdate() {
+        this.updateItemList();
+    }
+
     render() {
-        this.updateItemList((response) => {
+        /*this.updateItemList((response) => {
             this.setState({ array: response });
-        });
+        });*/
 
         var result = [];
         var array = this.state.array;
 
         if (array.length > 0) {
+            var count = 0;
             array.forEach((item) => {
-                result.push(<ItemList key={item.item} info={item} />);
+                result.push(<ItemListHauler key={count} info={item} navigator = { this.props.navigator }/>);
+                count++;
             });
         } else {
             result.push(<Text key={'text'} style={{fontSize:20}}>You currently do not have any items listed.</Text>);
@@ -42,18 +55,16 @@ export default class MyPickups extends Component {
             <View style={{flex: 1}}>
 
             <View style={{flex: 0.92}}>
-                <Text style={{fontWeight: 'bold', fontSize: 40, color: 'gray'}}>
-                    Pickups
-                </Text>
-                <ScrollView>
-                    <View>{ result }</View>
-                </ScrollView>
-                <Button
-                    onPress = {this._onPressDemo}
-                    style = {{height: 50, borderWidth: 0.5, borderColor: 'black' }}
-                    title = 'Demo Pickup Item'
-                    color = '#dcdcdc'>
-                </Button>
+                <View style={{flex: 0.1, justifyContent: 'center', backgroundColor: '#50cb66'}}>
+                    <Text style={{fontWeight: 'bold', fontSize: 30, color: 'white'}}>
+                        {'\t'}Pickups
+                    </Text>
+                </View>
+                <View style={{flex: 0.9, justifyContent: 'center'}}>
+                    <ScrollView>
+                        <View>{ result }</View>
+                    </ScrollView>
+                </View>
             </View>
 
             <View style={{flex: 0.08, flexDirection: 'row', borderColor:'gray', borderWidth:1}}>
@@ -106,6 +117,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressDockExplore = () => {
+        isLoaded = false;
         this.props.navigator.replace({
             title: 'Exlpore',
             name: 'Map',
@@ -116,6 +128,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressDockInbox = () => {
+        isLoaded = false;
         this.props.navigator.replace({
             title: 'Inbox',
             name: 'DemoInbox',
@@ -130,6 +143,7 @@ export default class MyPickups extends Component {
     }
 
     _onPressProfile = () => { //FIXME: Replace with profile page
+        isLoaded = false;
         this.props.navigator.replace({
             title: 'Profile Page Hauler',
             name: 'ProfilePageHauler',
@@ -140,14 +154,16 @@ export default class MyPickups extends Component {
     }
 
     _onPressDemo = () => {
-        this.props.navigator.push({
+        isLoaded = false;
+        this.props.navigator.replace({
             title: 'Demo Item',
             name: 'DemoItem',
         })
     }
 
     _viewItemDetail = (name) => {
-        this.props.navigator.push({
+        isLoaded = false;
+        this.props.navigator.replace({
             title: 'Item page',
             name: 'ItemPage'
             // passProps: {
@@ -167,7 +183,11 @@ export default class MyPickups extends Component {
                     count++;
                 }
             }
-            callback(array);
+            if (array !== undefined || this.state.array != array) {
+                if (isLoaded) {
+                    this.setState({ array: array });
+                }
+            }
         })
     }
 }
