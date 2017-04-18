@@ -85,13 +85,13 @@ export default class LoginScreen extends Component {
                     onPress = {this._createUser}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
                     title = 'Create Account'
-                    color = 'transparent'>
+                    color = 'white'>
                 </Button>
                 <Button
                     onPress = {this._isPressLogin}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black', }}
                     title = 'Cancel'
-                    color = 'transparent'>
+                    color = 'white'>
                 </Button>
                 {/*
                 <Text

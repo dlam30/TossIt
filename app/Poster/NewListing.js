@@ -164,7 +164,7 @@ export default class NewListing extends Component {
                                  onPress = {this._onPressCamera}
                                  style = { styles.button }
                                  title = 'Select...'
-                                 color = '#50cb66'>
+                                 color = 'white'>
                              </Button>
                            </View>
                         </View>
@@ -183,7 +183,7 @@ export default class NewListing extends Component {
                             onPress = {this._onPressPost}
                             style = { styles.button }
                             title = 'Post'
-                            color = '#50cb66'>
+                            color = 'white'>
                         </Button>
                     </View>
 
@@ -196,7 +196,7 @@ export default class NewListing extends Component {
                             onPress = {this._onPressBack}
                             style = { styles.button }
                             title = 'Cancel'
-                            color = '#50cb66'>
+                            color = 'white'>
                         </Button>
                     </View>
                 </View>

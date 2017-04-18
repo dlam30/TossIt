@@ -49,7 +49,8 @@ export default class LoginScreen extends Component {
                     onPress = {this._isPressLogin}
                     style = {{height: 30, borderWidth: 1, borderColor: 'black',}}
                     title = 'Log In'
-                    color = 'transparent'>
+                    color = 'white'
+                    >
                 </Button>
                 <Text
                     onPress = {this._isPressRegister}

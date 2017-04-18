@@ -33,7 +33,7 @@ export default class ItemPagePickup extends Component {
                             onPress = {this._onPressRequest}
                             style = { styles.button }
                             title = 'Request'
-                            color = '#50cb66'>
+                            color = 'white'>
                         </Button>
                     </View>
                     <View style={{flex: 0.03}}>
@@ -44,7 +44,7 @@ export default class ItemPagePickup extends Component {
                             onPress = {this._onPressBack}
                             style = { styles.button }
                             title = 'Back'
-                            color = '#50cb66'>
+                            color = 'white'>
                         </Button>
                     </View>
                     <View style={{flex: 0.03}}>
@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
 
     details: {
         flex: 0.33,
-        borderBottomWidth: 1, 
-        borderColor: 'grey', 
+        borderBottomWidth: 1,
+        borderColor: 'grey',
         backgroundColor: 'white',
         justifyContent: 'center'
     }
